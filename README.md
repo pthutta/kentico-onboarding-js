@@ -41,6 +41,13 @@ npm start
 The project was created with [react-create-app](https://github.com/facebookincubator/create-react-app) boilerplate. 
 You should use WebStorm IDE to get familiar with it. Prerequisites for running this project are node v6+ and npm v3+. (If you followed the Draft onboarding on Kentico wiki pages, you should be ready to go.)
 
+## Coding style
+ESlint and TSlint are already set-up for you, so you will see all the errors and warnings in console and also in your WebStorm IDE. Please follow this rules while developing:
+ - JavaScript file names are `lowerCamelCase`
+ - one React component per file, name is `UpperCamelCase`, and has `.jsx` extension
+ - use `'single quotes'` instead of `"double quotes"`
+ - more Draft-specific coding rules are specified in https://kentico.atlassian.net/wiki/display/KA/04b+-+JS+Draft+Conventions+--+DRAFT
+
 ## Task 1
 According to `assignment.gif` implement all the required functionality (keep in mind we want to be able to edit multiple list items at once). Store some pseudo-random identifier (id) for each item (use some util function for its generation, e.g: http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript)
 All the boilerplate is already there so you can dive into coding straight away. Feel free to use bootstrap css classes. Get familiar with project structure. The entry file is `index.js`. Page layout can be found in `App.jsx`. It renders `List.jsx` in its body, where you are supposed to implement the rest of the functionality. 
@@ -66,16 +73,9 @@ Refactor the application to use ReduxJS.
   - Wrap the instance of App.jsx in `<Provider>` component so that all the components can access global store (via `connect()` function).
  - Refactor `List.jsx` so that it receives the app state from Redux store as its props and passes it down to its child components. (`connect()` + `mapStateToProps()`)
  - Child components should dispatch actions that describe changes of the application. (`connect()` + `mapDispatchToProps()`)
-  
+
 **IMPORTANT:** preserve Immutability!
 
-## [optoinal] Task 4
+## [optional] Task 4
 Rewrite the app to Typescript.
 Write unit tests for your Redux logic (actionCreators and reducers -- even combined).
-
-## Coding style
-ESlint and TSlint are already set-up for you, so you will see all the errors and warnings in console and also in your WebStorm IDE. Please follow this rules while developing: 
- - JavaScript file names are `lowerCamelCase`
- - one React component per file, name is `UpperCamelCase`, and has `.jsx` extension
- - use `'single quotes'` instead of `"double quotes"`
- - more Draft-specific coding rules are specified in https://kentico.atlassian.net/wiki/display/KA/04b+-+JS+Draft+Conventions+--+DRAFT
