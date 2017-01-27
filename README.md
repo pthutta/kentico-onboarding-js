@@ -67,6 +67,7 @@ Refactor the application to use ReduxJS.
  - Create **`actionTypes.js`** where you describe all possible actions (as string constants) that can modify state of the app (e.g: "ITEM_CREATED").
  - Create **action creators** (helper functions) for all the action types you defined.
  - Move all the state of top level component (`List.jsx`) to Redux store (state in Redux is described by reducers; use reducer composition if possible).
+  - Write jasmine **unit tests** for your Redux logic (used TDD to write tests for actionCreators and reducers combined).
   - Implement **reducers** that react to dispatched actions and change the state accordingly.
  - In index.js:
   - Create instance of Redux store, pass root reducer and use logging middleware.
@@ -78,4 +79,3 @@ Refactor the application to use ReduxJS.
 
 ## [optional] Task 4
 Rewrite the app to Typescript.
-Write unit tests for your Redux logic (actionCreators and reducers -- even combined).
