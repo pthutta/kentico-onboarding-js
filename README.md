@@ -22,13 +22,14 @@ You won't be added as a contributor to this repository. You have to fork it to o
  - `git checkout -b features/task-1` -- crates and checkouts new branch named `features/task-1` based on develop. Commit all your progress on Task 1 to this branch. Once ready, you can merge this branch to develop using following commands:
     - `git checkout develop`
     - `git merge features/task-1` -- now you have all the latest code in develop branch
- - You can submit **Pull request** to the original repository. Please, always submit the pull request to the branch witch starts with your name/login. (I have to create it first, so if it's not there, let me know.)
+ - You can submit **Pull request** to the original repository. Please, always submit the pull request to the branch witch starts with your name/login. (I have to create it first, so if it's not there, let me know.) Every task should be submitted a separate pull request. You should wait for the previous PR to be merged before you submit another. Git flow and commiting each task to separate feature branch should help you here :)
 
 ### Development
-Now you have everything git-related set-up and you can start developing... 
-Please, commit with reasonable commit messages (http://chris.beams.io/posts/git-commit/), you can squash your commits as well. Feel free to create new branches when developing (task-1, 2 etc.) and merge them to `develop` when you want to submit a pull request.
+**IMPORTANT:** Run `npm install` and make sure you have `eslint` and `tslint` tools enabled (in File > Settings, search for keywords). The path to `eslint` and `tslint` node packages should be in `node_modules` inside of project folder.
 
-**IMPORTANT: ** Run `npm install` and make sure you have `eslint` and `tslint` tools enabled (in File > Settings, search for keywords). The path to `eslint` and `tslint` node packages should be in `node_modules` inside of project folder.
+Now you have everything git-related set-up and you can start developing... 
+Please, commit with reasonable commit messages (http://chris.beams.io/posts/git-commit/), you can squash your commits as well. Feel free to create new branches when developing (task-1, 2 etc.) and merge them to `develop` when you want to submit a pull request. Submit your PRs from `develop` branch.
+
 
 ## How to run the project 
 **tl;dr**
