@@ -10,7 +10,7 @@ class List extends Component {
         {/* TODO: You can delete the assignment part once you do not need it */}
         <div className="row">
           <div className="col-sm-12 text-center">
-            <TsComponent name="Fancy" />
+            <TsComponent name="𝕱𝖆𝖓𝖈𝖞" />
           </div>
         </div>
 
