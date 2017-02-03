@@ -18,19 +18,20 @@ You won't be added as a contributor to this repository. You have to fork it to o
  - `git fetch upstream` -- receive latest code
  - `git merge upstream/master` -- merge it to your own master
  - you now have the latest upstream code in your local master branch
- - `git checkout -b develop` -- creates and checkouts new branch named `develop` where you can continously work on the assignment. You should set keep this branch one-to-one with the upstream repository branch `solutions/yourlogin`
+ - `git checkout -b develop` -- creates and checkouts new branch named `develop` where you can continously work on the assignment. You should keep this branch one-to-one with the upstream repository branch `solutions/yourlogin`
  - `git checkout -b features/task-1` -- crates and checkouts new branch named `features/task-1` based on develop. Commit all your progress on Task 1 to this branch.
  - Try to keep your `master` up to date with `upstream/master` and propagate the changes to all your branches.
  
 ### Pull Requests (PR)
- - Once ready, you can submit **Pull request** to the original repository. Please, always submit the pull request to the branch which starts with solutions/[your name or login]. (I have to create it first, so if it's not there, let me know.) 
+ - Once ready, you can submit **Pull request** to the original repository. Please, always submit the pull request to the branch which starts with `solutions/[your name or login]`. (I have to create it first, so if it's not there, let me know.) 
  - Every task should be submitted as a separate pull request, always from branch `feature/task-X`. (If you submit PR from `develop` branch and start working on another task immediately, all commits added to the `develop` will be reflected in PR which really does not make the review any easier.)
  - You should wait for the previous PR to be merged before you submit another. 
  - Any comments from PR review shall be fixed to the appropriate feature branch that is related to the reviewed task.
- - Once your changes from PR are approved and merged to your solutions branch in the original repository, you can merge them to your develop branch. (`git checkout develop; git fetch upstream; git merge upstream/solutions/<your-login>;)
+ - Once your changes from PR are approved and merged to your solutions branch in the original repository, you can merge them to your develop branch. (`git checkout develop; git fetch upstream; git merge upstream/solutions/your-login;)
  - In case you already started working on next task, just merge the changes from your develop to the next feature branch.
  - If the PR is still not merged and you want to start working on next task, checkout a new branch based on previous task
  - Repeat from step 1. for following tasks :)
+ - To get your upstream branch up-to-date with upstream master, please, complete **Task 0**
  
 NOTE: Think of it as a real word repository. It can happen that you don't have rights to commit anything to `master` nor `develop`. Therefore, all the changes you want to make have to be reviewed first in form of a PR to `develop`. Once the repository owner is happy with your changes, only then he merges them to `develop`. The situation here is a bit more complicated while we have multiple repositories (oroginal + forks). Just think of your `develop` branch as if you were not allowed to make any commits to it and you can only merge from `upstream/solutions/<your-login>`.
 
@@ -57,6 +58,9 @@ ESlint and TSlint are already set-up for you, so you will see all the errors and
  - one React component per file, name is `UpperCamelCase`, and has `.jsx` extension
  - use `'single quotes'` instead of `"double quotes"`
  - more Draft-specific coding rules are specified in https://kentico.atlassian.net/wiki/display/KA/04b+-+JS+Draft+Conventions+--+DRAFT
+
+## Task 0
+In order to update your upstream solutions branch with the changes that might have happend on upstream master: After cloning the repository, create `develop` and then `feature/task-0` branch. Submit new Pull request to your solutions branch from task-0 branch.
 
 ## Task 1
 According to `assignment.gif` implement all the required functionality (keep in mind we want to be able to edit multiple list items at once). Store some pseudo-random identifier (id) for each item (use some util function for its generation, e.g: http://stackoverflow.com/questions/105034/create-guid-uuid-in-javascript)
