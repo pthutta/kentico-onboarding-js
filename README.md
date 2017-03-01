@@ -94,7 +94,8 @@ Refactor the application to use ReduxJS.
  - Refactor `List.jsx` so that it receives the app state from Redux store as its props and passes it down to its child components. (`connect()` + `mapStateToProps()`)
  - Child components should dispatch actions that describe changes of the application. (`connect()` + `mapDispatchToProps()`)
 
-**IMPORTANT:** preserve Immutability!
+**IMPORTANT:** preserve Immutability in store state!
+(Any view models you will need no not have to be instances of Immutable, just use POJO.)
 
 ## [optional] Task 4
-Rewrite the app to Typescript.
+In this task you will use TypeScript to make you app strongly typed. Mainly introduce interfaces for all Models and ViewModels in your app. Use them in reducers. Create a simple interface for action with payload of type `any` and use it for all actions. Pick one component and rewrite it entirely to TypeScript - have a look at Draft coding conventions on wiki to get an idea how to start. Tests remain written in JS.
