@@ -58,7 +58,7 @@ ESlint and TSlint are already set-up for you, so you will see all the errors and
  - JavaScript file names are `lowerCamelCase`
  - one React component per file, name is `UpperCamelCase`, and has `.jsx` extension
  - use `'single quotes'` instead of `"double quotes"`
- - more Draft-specific coding rules are specified in https://kentico.atlassian.net/wiki/display/KA/04b+-+JS+Draft+Conventions+--+DRAFT
+ - more Draft-specific coding rules are specified in https://kentico.atlassian.net/wiki/display/KC/Javascript+and+Typescript+Conventions
 
 ## Task 0
 Update your upstream solutions branch with the changes that might have happened on upstream master: After cloning your repository, create `develop` and then `feature/task-0` branch (as described above).
