@@ -98,7 +98,7 @@ Refactor the application to use ReduxJS.
 (Any view models you will need no not have to be instances of Immutable, just use POJO.)
 
 ## Task 4
-In this task you will use TypeScript to make you app strongly typed. Mainly introduce interfaces for all Models and ViewModels in your app. Use them in reducers. Create a simple interface for action with payload of type `any` and use it for all actions. Pick one component and rewrite it entirely to TypeScript - have a look at Draft coding conventions on wiki to get an idea how to start. Tests remain written in JS.
+In this task you will use TypeScript to make you app strongly typed. Mainly introduce interfaces for all Models and ViewModels in your app. Use them in reducers. Create a simple interface for action with payload of type `any` and use it for all actions. Pick one component and rewrite it entirely to TypeScript - have a look at [Draft coding conventions](https://kentico.atlassian.net/wiki/display/KC/Javascript+and+Typescript+Conventions) on wiki to get an idea how to start. Tests remain written in JS.
 
 Make sure you install type definitions for 3rd pardty libraries you are already using in your app (e.g. redux, react-redux, immutable, memoizee...). To do that, run this for each library:
 ```
