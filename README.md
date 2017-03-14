@@ -105,3 +105,18 @@ Make sure you install type definitions for 3rd pardty libraries you are already 
 npm install --save-dev @types/redux
 ```
 Read about how it works here: https://github.com/DefinitelyTyped/DefinitelyTyped
+
+## Taks 5
+What kind of app it would be without the server side, right? Customer hitting F5 and then getting mad about loosing all his items is not a happy customer. Have a look at [06 - CS Onboarding task](https://kentico.atlassian.net/wiki/display/KA/06+-+CS+Onboarding+task) and implement at least Tasks 0 and 1 before you move on to connect your frontend to new your brand new shiny REST API.
+
+*!! IMPORTANT !!*
+Do not forget to tell the client app to [proxy your requests to the server](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md#proxying-api-requests-in-development).
+
+*Requirements:*
+- show a loader ("točič") until items are asynchronously provided after application start
+- show an error message when loading fails/timeouts
+- only amend the way (list of) existing items are retrieved and a new item is added (for now)
+- stick with the Redux data flow design, read about [async actions|http://redux.js.org/docs/advanced/AsyncActions.html]
+- make sure you use [`redux-thunk`](https://github.com/gaearon/redux-thunk) middleware
+- do not forget about dependency injection and tests (see sample tests for inspiration)
+- [optional] if you have time left in the sprint, you can implement delete + update funcitonality (DELETE and PUT requests to server) as well
