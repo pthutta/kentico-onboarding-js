@@ -14,25 +14,17 @@ describe('Promise resolving', () => {
       resolve(42);
     });
 
-    expect.assertions(1);
-    return myPromise.then(result => {
-      expect(result).toBe(42);
-    });
+    return myPromise.then(result => expect(result).toBe(42));
   });
 
   it('resolves with correct result - shorthand syntax', () => {
     return Promise.resolve(42)
-      .then((result) => {
-        expect(result).toBe(42);
-      });
+      .then((result) => expect(result).toBe(42));
   });
 
   it('resolves with correct result - more assertions', () => {
-    const myPromise = new Promise((resolve, reject) => {
-      resolve(42);
-    });
+    const myPromise = new Promise((resolve, reject) => resolve(42));
 
-    expect.assertions(3);
     return myPromise.then(result => {
       expect(result).toBeLessThan(666);
       expect(result).toBeGreaterThanOrEqual(-1/12);
