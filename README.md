@@ -73,7 +73,8 @@ All the boilerplate is already there so you can dive into coding straight away. 
 
 ## Task 2
 Install [ImmutableJS](http://facebook.github.io/immutable-js) to your project: `npm install --save immutable`.
-Refactor your application so that all the state (except for reasonable exceptions e.g. current text of input field in `CreateItem` component) is stored in top level component (e.g. `List.jsx`) and all the complex objects in state are represented as `Immutable.Map` (key values are item IDs).
+
+Refactor your application; make sure that all data required for the application (apart from reasonable exceptions, e.g. current text of input fields) is stored as an `Immutable.OrderedMap` of `Immutable.Record`s within the top level component (e.g. `List.jsx`). Use IDs of the items as keys for the Map.
 
 ## Task 3
 Install [ReduxJS](http://redux.js.org/), [react-redux](http://redux.js.org/docs/basics/UsageWithReact.html) and [redux-logger](https://github.com/evgenyrodionov/redux-logger) to your project: 
