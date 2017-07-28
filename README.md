@@ -1,3 +1,5 @@
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
+
 # kentico-onboarding-js
 Simple step-by-step task for Kentico Academy to learn the basics of JS, React, Redux.
 
