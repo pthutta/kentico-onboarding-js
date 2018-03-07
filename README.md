@@ -68,7 +68,6 @@ Merge your `master-v2` branch - that already includes all changes from `upstream
 
 Your next step will be to set up a [continuous integration](https://www.atlassian.com/continuous-delivery/continuous-integration-intro) in your repository. 
 - each push of commits should trigger tests
-- each push to the _master_ branch should trigger release
 - status of a build should be visible as a GitHub badge in repository (search for "status badge _your CI name_")
 - you can choose any CI that is compatible with GitHub and has free license/plan to be used by company's employee - for example [Travis CI](https://travis-ci.org/), [AppVeyor](https://www.appveyor.com/) or [Circle CI](https://circleci.com/)
 - commit and push your CI configuration file to your `feature/task-0` branch
