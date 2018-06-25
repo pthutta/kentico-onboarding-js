@@ -1,5 +1,5 @@
 import React, { PureComponent } from 'react';
-import assignment from './../../assignment.gif';
+import assignment from './../assignment.gif';
 
 import { TsComponent } from './TsComponent.tsx';
 
