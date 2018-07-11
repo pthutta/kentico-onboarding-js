@@ -1,19 +1,29 @@
 {
-	"name": "kentico-onboarding",
-	"version": "0.0.1",
-	"main": "src/index.jsx",
-	"scripts": {
-		"build": "webpack"
-	},
-	"devDependencies": {
-		"babel-cli": "^6.26.0",
-		"babel-core": "^6.26.3",
-		"babel-loader": "^7.1.4",
-		"babel-preset-env": "^1.7.0",
-		"babel-preset-react": "^6.24.1",
-		"react": "^16.4.1",
-		"react-dom": "^16.4.1",
-		"webpack": "^4.14.0",
-		"webpack-cli": "^3.0.8"
-	}
+  "name": "kentico-onboarding",
+  "version": "0.0.1",
+  "main": "src/index.jsx",
+  "scripts": {
+    "build": "webpack"
+  },
+  "dependencies": {
+    "react": "^16.4.1",
+    "react-dom": "^16.4.1"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-core": "^6.26.3",
+    "babel-eslint": "^8.2.5",
+    "babel-loader": "^7.1.4",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "eslint": "^4.19.1",
+    "eslint-config-airbnb": "^16.1.0",
+    "eslint-loader": "^2.0.0",
+    "eslint-plugin-import": "^2.12.0",
+    "eslint-plugin-jsx-a11y": "^6.1.0",
+    "eslint-plugin-react": "^7.9.1",
+    "eslint-plugin-react-functional-set-state": "^1.2.1",
+    "webpack": "^4.14.0",
+    "webpack-cli": "^3.0.8"
+  }
 }
