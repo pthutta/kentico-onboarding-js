@@ -1,3 +1,7 @@
+/* eslint-disable object-curly-newline */
+/* eslint-disable object-property-newline */
+/* eslint-disable no-path-concat */
+
 module.exports = {
   entry: './src/index.jsx',
   output: {
@@ -6,24 +10,25 @@ module.exports = {
   },
   module: {
     rules: [
-      { test: /\.js$/, exclude: /node_modules/, use: ["babel-loader", "eslint-loader"] },
-      { test: /\.jsx$/, exclude: /node_modules/, use: ["babel-loader", "eslint-loader"] },
-      {
-        test: /\.css$/,
-        loader: [
-          { loader: 'file-loader', options: { name: 'styles/[name].[ext]' } },
-          { loader: 'extract-loader', options: { publicPath: '../' } },
-          { loader: 'css-loader' }
-        ]
-      },
-      {
-        test: /\.(eot|svg|ttf|woff|woff2)/,
-        use: {
-          loader: 'url-loader',
-          options: { name: 'assets/[name].[ext]', limit: 10000 },
-        }
-      },
+      { test: /\.(js|jsx)$/, exclude: /node_modules/, use: [
+        'babel-loader',
+        'eslint-loader'
+      ] },
+      { test: /\.css$/, use: [
+        { loader: 'file-loader', options: { name: 'styles/[name].[ext]' } },
+        { loader: 'extract-loader', options: { publicPath: '../' } },
+        { loader: 'css-loader' }
+      ] },
+      { test: /\.(eot|svg|ttf|woff|woff2)/, use: [
+        { loader: 'url-loader', options: { name: 'assets/[name].[ext]', limit: 10000 } }
+      ] },
+      { test: /\.(html|jpg|jpeg|png|ico|gif)/, use: [
+        { loader: 'file-loader', options: { name: '[path][name].[ext]', context: 'public' } }
+      ] }
     ]
+  },
+  resolve: {
+    extensions: ['.js', '.jsx']
   },
   devtool: 'source-map',
 };

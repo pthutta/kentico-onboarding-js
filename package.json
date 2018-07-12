@@ -4,7 +4,7 @@
   "main": "src/index.jsx",
   "scripts": {
     "build": "webpack",
-    "start": "start public/index.html & webpack -w"
+    "start": "webpack & start build/index.html"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
