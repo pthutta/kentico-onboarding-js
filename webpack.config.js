@@ -20,10 +20,7 @@ module.exports = {
         test: /\.(eot|svg|ttf|woff|woff2)/,
         use: {
           loader: 'url-loader',
-          options: {
-            name: 'assets/[name].[ext]',
-            limit: 10000,
-          },
+          options: { name: 'assets/[name].[ext]', limit: 10000 },
         }
       },
     ]
