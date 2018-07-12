@@ -3,7 +3,8 @@
   "version": "0.0.1",
   "main": "src/index.jsx",
   "scripts": {
-    "build": "webpack"
+    "build": "webpack",
+    "start": "start index.html & webpack -w"
   },
   "dependencies": {
     "react": "^16.4.1",
