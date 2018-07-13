@@ -15,6 +15,10 @@ module.exports = {
         'babel-loader',
         'eslint-loader'
       ] },
+      { test: /\.(ts|tsx)$/, exclude: /node_modules/, use: [
+        'ts-loader',
+        { loader: 'tslint-loader', options: { configFile: 'tslint.json' } }
+      ] },
       { test: /\.css$/, use: [
         { loader: 'file-loader', options: { name: 'styles/[name].[ext]' } },
         { loader: 'extract-loader', options: { publicPath: '../' } },
@@ -29,10 +33,10 @@ module.exports = {
     ]
   },
   resolve: {
-    extensions: ['.js', '.jsx']
+    extensions: ['.ts', '.tsx', '.js', '.jsx']
   },
   plugins: [
     new CleanWebpackPlugin(['build'])
   ],
-  devtool: 'source-map',
+  devtool: 'eval-source-map',
 };
