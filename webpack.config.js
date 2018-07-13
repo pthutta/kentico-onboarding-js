@@ -1,6 +1,7 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable object-property-newline */
 /* eslint-disable no-path-concat */
+const CleanWebpackPlugin = require('clean-webpack-plugin');
 
 module.exports = {
   entry: './src/index.jsx',
@@ -30,5 +31,8 @@ module.exports = {
   resolve: {
     extensions: ['.js', '.jsx']
   },
+  plugins: [
+    new CleanWebpackPlugin(['build'])
+  ],
   devtool: 'source-map',
 };
