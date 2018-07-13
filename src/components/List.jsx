@@ -28,7 +28,7 @@ export class List extends PureComponent {
         <div className="row">
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
-              // TODO: implement the list here :)
+              TODO: implement the list here :)
             </pre>
           </div>
         </div>

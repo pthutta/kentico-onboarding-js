@@ -39,4 +39,9 @@ module.exports = {
     new CleanWebpackPlugin(['build'])
   ],
   devtool: 'eval-source-map',
+  devServer: {
+    contentBase: __dirname + '/build',
+    port: 3000,
+    open: true
+  }
 };
