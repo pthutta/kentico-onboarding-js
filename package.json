@@ -4,7 +4,8 @@
   "main": "src/index.jsx",
   "scripts": {
     "build": "webpack --mode=development",
-    "start": "webpack-dev-server --mode=development"
+    "start": "webpack-dev-server --mode=development",
+    "test": "jest --config=jest.config.js --no-cache"
   },
   "dependencies": {
     "bootstrap": "^3.3.7",
@@ -12,6 +13,7 @@
     "react-dom": "^16.4.1"
   },
   "devDependencies": {
+    "@types/jest": "^23.1.5",
     "@types/react": "^16.4.6",
     "babel-cli": "^6.26.0",
     "babel-core": "^6.26.3",
@@ -30,6 +32,8 @@
     "eslint-plugin-react-functional-set-state": "^1.2.1",
     "extract-loader": "^2.0.1",
     "file-loader": "^1.1.11",
+    "jest": "^23.4.0",
+    "ts-jest": "^23.0.0",
     "ts-loader": "^4.4.2",
     "tslint": "^5.10.0",
     "tslint-loader": "^3.6.0",
