@@ -5,6 +5,7 @@
   "scripts": {
     "build": "webpack --mode=development",
     "start": "webpack-dev-server --mode=development",
+    "production": "webpack -p",
     "test": "jest --config=jest.config.js --no-cache"
   },
   "dependencies": {

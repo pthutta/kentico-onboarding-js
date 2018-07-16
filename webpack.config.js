@@ -1,12 +1,14 @@
 /* eslint-disable object-curly-newline */
 /* eslint-disable object-property-newline */
 /* eslint-disable no-path-concat */
+const path = require('path');
 const CleanWebpackPlugin = require('clean-webpack-plugin');
+const mode = process.env.NODE_ENV || 'development';
 
 module.exports = {
   entry: './src/index.jsx',
   output: {
-    path: __dirname + '/build',
+    path: path.resolve(__dirname, '/build'),
     filename: 'bundle.js'
   },
   module: {
@@ -38,9 +40,9 @@ module.exports = {
   plugins: [
     new CleanWebpackPlugin(['build'])
   ],
-  devtool: 'eval-source-map',
+  devtool: mode === 'development' ? 'eval-source-map' : null,
   devServer: {
-    contentBase: __dirname + '/build',
+    contentBase: path.resolve(__dirname, '/build'),
     port: 3000,
     open: true
   }
