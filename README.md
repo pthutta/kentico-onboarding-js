@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/pthutta/kentico-onboarding-js.svg?branch=master)](https://travis-ci.org/pthutta/kentico-onboarding-js)
+
 # kentico-onboarding-js
 Simple step-by-step task for Kentico Academy to learn the basics of JS, React, Redux, TypeScript.
 
