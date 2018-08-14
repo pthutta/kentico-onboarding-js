@@ -25,6 +25,14 @@ export class ListItem extends PureComponent {
     });
   };
 
+  _deleteOnClick = () => {
+    const { id, onDelete } = this.props;
+    onDelete(id);
+    this.setState({
+      isBeingEdited: false
+    });
+  };
+
   render() {
     const { order, text } = this.props;
 
@@ -36,7 +44,7 @@ export class ListItem extends PureComponent {
             <input defaultValue={text} ref={this.newItemText}/>
             <button type="submit" onClick={this._saveOnClick}>Save</button>
             <button type="submit" onClick={this._labelOnClick}>Cancel</button>
-            <button type="submit">Delete</button>
+            <button type="submit" onClick={this._deleteOnClick}>Delete</button>
           </span>
         ) : <label onClick={this._labelOnClick}>{text}</label>}
       </div>

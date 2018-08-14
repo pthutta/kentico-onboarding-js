@@ -31,9 +31,16 @@ export class List extends PureComponent {
     this.setState(state => {
       const items = state.items.slice();
       items.find(i => i.id === id).text = newValue;
-      return { state };
+      return { items };
     });
   };
+
+  _deleteItem = id => {
+    this.setState(state => {
+      const items = state.items.filter(i => i.id !== id);
+      return { items };
+    });
+  }
 
   _uuidv4 = () => {
     return (
@@ -70,7 +77,7 @@ export class List extends PureComponent {
         <div className="row">
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
-              {items.map((item, i) => <ListItem key={i} order={i + 1} onSave={this._saveItem} {...item} />)}
+              {items.map((item, i) => <ListItem key={i} order={i + 1} onSave={this._saveItem} onDelete={this._deleteItem} {...item} />)}
               <input ref={this.newItem} type="text"/>
               <button type="submit" onClick={this._addItem}>Add</button>
             </pre>
