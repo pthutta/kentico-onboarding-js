@@ -12,12 +12,9 @@ export class List extends PureComponent {
     };
 
     this.newItem = React.createRef();
-
-    this._addItem = this._addItem.bind(this);
-    this._uuidv4 = this._uuidv4.bind(this);
   }
 
-  _addItem() {
+  _addItem = () => {
     const { items } = this.state;
 
     this.setState({
@@ -28,15 +25,23 @@ export class List extends PureComponent {
     });
 
     this.newItem.current.value = '';
-  }
+  };
 
-  _uuidv4() {
+  _saveItem = (id, newValue) => {
+    this.setState(state => {
+      const items = state.items.slice();
+      items.find(i => i.id === id).text = newValue;
+      return { state };
+    });
+  };
+
+  _uuidv4 = () => {
     return (
       [1e7] + -1e3 + -4e3 + -8e3 + -1e11)
       .replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4)
         .toString(16)
       );
-  }
+  };
 
   render() {
     const { items } = this.state;
@@ -65,7 +70,7 @@ export class List extends PureComponent {
         <div className="row">
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
-              {items.map((item, i) => <ListItem key={i} order={i + 1} {...item} />)}
+              {items.map((item, i) => <ListItem key={i} order={i + 1} onSave={this._saveItem} {...item} />)}
               <input ref={this.newItem} type="text"/>
               <button type="submit" onClick={this._addItem}>Add</button>
             </pre>
