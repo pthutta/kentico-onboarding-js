@@ -1,6 +1,10 @@
 import React, { PureComponent } from 'react';
 import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
+import {
+  checkStringLength,
+  generateUUID
+} from '../utils/UtilFunctions';
 
 export class List extends PureComponent {
   static displayName = 'List';
@@ -17,7 +21,7 @@ export class List extends PureComponent {
   _addItem = () => {
     this.setState(state => ({
       items: state.items.concat([{
-        id: this._uuidv4(),
+        id: generateUUID(),
         text: state.newItem
       }]),
       newItem: ''
@@ -44,16 +48,9 @@ export class List extends PureComponent {
     });
   };
 
-  _uuidv4 = () => { // sr, export, name, npm?, testy, return
-    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11)
-      .replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4)
-        .toString(16)
-      );
-  };
-
   render() {
     const { items, newItem } = this.state;
-    const isEnabled = newItem.trim().length > 0; // util funkcia
+    const isValid = checkStringLength(newItem);
 
     return (
       <div className="row">
@@ -78,9 +75,9 @@ export class List extends PureComponent {
                 ))}
               </ul>
               <form className="form-inline"> {/* nova komponenta */}
-                <div className={"form-group " + (isEnabled ? "has-success" : "has-error")}>
+                <div className={"form-group " + (isValid ? "has-success" : "has-error")}>
                   <input type="text" className="form-control" value={this.state.newItem} placeholder="New item" onChange={this._handleItemChange}/>
-                  <button type="button" className="btn btn-default" onClick={this._addItem} disabled={!isEnabled}>Add</button>
+                  <button type="button" className="btn btn-default" onClick={this._addItem} disabled={!isValid}>Add</button>
                 </div>
               </form>
             </pre>

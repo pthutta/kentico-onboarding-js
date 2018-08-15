@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
+import { checkStringLength } from '../utils/UtilFunctions';
 
 export class ListItem extends PureComponent {
   static displayName = 'List Item';
@@ -50,17 +51,17 @@ export class ListItem extends PureComponent {
   render() {
     const { order, text } = this.props;
     const { newItemText } = this.state;
-    const isEnabled = newItemText.trim().length > 0; // util
+    const isValid = checkStringLength(newItemText);
 
     return (
       <li className="list-group-item">
         <form className="form-inline">
-          <div className={classNames("form-group", { 'has-success': isEnabled }, { 'has-error': !isEnabled })}>
+          <div className={classNames("form-group", { 'has-success': isValid }, { 'has-error': !isValid })}>
             <label>{order}. </label>
             {this.state.isBeingEdited ? (
               <span>
                 <input className="form-control" value={this.state.newItemText} onChange={this._handleItemTextChange}/>
-                <button type="button" className="btn btn-primary" onClick={this._saveOnClick} disabled={!isEnabled}>Save</button>
+                <button type="button" className="btn btn-primary" onClick={this._saveOnClick} disabled={!isValid}>Save</button>
                 <button type="button" className="btn btn-default" onClick={this._labelOnClick}>Cancel</button>
                 <button type="button" className="btn btn-danger" onClick={this._deleteOnClick}>Delete</button>
               </span>
