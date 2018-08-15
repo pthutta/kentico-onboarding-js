@@ -1,14 +1,14 @@
 import React, { PureComponent } from 'react';
 
 export class ListItem extends PureComponent {
-  constructor(props) {
-    super(props);
-
-    this.newItemText = React.createRef();
+  constructor() {
+    super();
 
     this.state = {
       isBeingEdited: false
     };
+
+    this.newItemText = React.createRef();
   }
 
   _labelOnClick = () => {
@@ -27,10 +27,10 @@ export class ListItem extends PureComponent {
 
   _deleteOnClick = () => {
     const { id, onDelete } = this.props;
+    onDelete(id);
     this.setState({
       isBeingEdited: false
     });
-    onDelete(id);
   };
 
   render() {
@@ -40,15 +40,15 @@ export class ListItem extends PureComponent {
       <li className="list-group-item">
         <form className="form-inline">
           <div className="form-group">
-            <label className="card-text">{order}. </label>
+            <label>{order}. </label>
             {this.state.isBeingEdited ? (
               <span>
-                <input defaultValue={text} ref={this.newItemText} className="form-control"/>
-                <button type="submit" onClick={this._saveOnClick} className="btn btn-primary">Save</button>
-                <button type="submit" onClick={this._labelOnClick} className="btn btn-default">Cancel</button>
-                <button type="submit" onClick={this._deleteOnClick} className="btn btn-danger">Delete</button>
+                <input className="form-control" ref={this.newItemText} defaultValue={text}/>
+                <button type="button" className="btn btn-primary" onClick={this._saveOnClick}>Save</button>
+                <button type="button" className="btn btn-default" onClick={this._labelOnClick}>Cancel</button>
+                <button type="button" className="btn btn-danger" onClick={this._deleteOnClick}>Delete</button>
               </span>
-            ) : <label onClick={this._labelOnClick} className="card-text">{text}</label>}
+            ) : <label onClick={this._labelOnClick}>{text}</label>}
           </div>
         </form>
       </li>

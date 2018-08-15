@@ -1,11 +1,10 @@
 import React, { PureComponent } from 'react';
-import assignment from '../../public/images/assignment.gif';
 import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 
 export class List extends PureComponent {
-  constructor(props) {
-    super(props);
+  constructor() {
+    super();
 
     this.state = {
       items: []
@@ -35,7 +34,7 @@ export class List extends PureComponent {
     });
   };
 
-  _deleteItem = id => { // deletion of item leaves field with incorrect text
+  _deleteItem = id => {
     this.setState(state => {
       const items = state.items.filter(i => i.id !== id);
       return { items };
@@ -43,8 +42,7 @@ export class List extends PureComponent {
   };
 
   _uuidv4 = () => {
-    return (
-      [1e7] + -1e3 + -4e3 + -8e3 + -1e11)
+    return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11)
       .replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4)
         .toString(16)
       );
@@ -55,19 +53,6 @@ export class List extends PureComponent {
 
     return (
       <div className="row">
-        {/* TODO: You can delete the assignment part once you do not need it */}
-        <div className="row">
-          <div className="col-sm-12">
-            <p className="lead text-center">
-              Desired functionality is captured in the gif image.
-            </p>
-            <p className="lead text-center">
-              <b>Note: </b>Try to make solution easily extensible (e.g. more displayed fields per item like <code>dateCreated</code>).
-            </p>
-            <img src={assignment} alt="assignment" className="img--assignment" />
-          </div>
-        </div>
-
         <div className="row">
           <div className="col-sm-12 text-center">
             <TsComponent name="𝕱𝖆𝖓𝖈𝖞" invisible />
@@ -78,11 +63,19 @@ export class List extends PureComponent {
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
               <ul className="list-group list-group-flush">
-                {items.map((item, i) => <ListItem key={item.id} order={i + 1} onSave={this._saveItem} onDelete={this._deleteItem} {...item} />)}
+                {items.map((item, i) => (
+                  <ListItem
+                    key={item.id}
+                    order={i + 1}
+                    onSave={this._saveItem}
+                    onDelete={this._deleteItem}
+                    {...item}
+                  />
+                ))}
               </ul>
               <form className="form-inline">
                 <div className="form-group">
-                  <input ref={this.newItem} className="form-control" type="text"/>
+                  <input type="text" className="form-control" ref={this.newItem} placeholder="New item"/>
                   <button type="button" className="btn btn-default" onClick={this._addItem}>Add</button>
                 </div>
               </form>
