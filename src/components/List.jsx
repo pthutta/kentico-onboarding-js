@@ -1,10 +1,8 @@
 import React, { PureComponent } from 'react';
 import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
-import {
-  checkStringLength,
-  generateUUID
-} from '../utils/UtilFunctions';
+import { generateUUID } from '../utils/UtilFunctions';
+import { NewListItem } from './NewListItem';
 
 export class List extends PureComponent {
   static displayName = 'List';
@@ -50,7 +48,6 @@ export class List extends PureComponent {
 
   render() {
     const { items, newItem } = this.state;
-    const isValid = checkStringLength(newItem);
 
     return (
       <div className="row">
@@ -74,12 +71,7 @@ export class List extends PureComponent {
                   />
                 ))}
               </ul>
-              <form className="form-inline"> {/* nova komponenta */}
-                <div className={"form-group " + (isValid ? "has-success" : "has-error")}>
-                  <input type="text" className="form-control" value={this.state.newItem} placeholder="New item" onChange={this._handleItemChange}/>
-                  <button type="button" className="btn btn-default" onClick={this._addItem} disabled={!isValid}>Add</button>
-                </div>
-              </form>
+              <NewListItem newItem={newItem} handleItemChange={this._handleItemChange} addItem={this._addItem}/>
             </pre>
           </div>
         </div>

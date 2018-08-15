@@ -50,13 +50,12 @@ export class ListItem extends PureComponent {
 
   render() {
     const { order, text } = this.props;
-    const { newItemText } = this.state;
-    const isValid = checkStringLength(newItemText);
+    const isValid = checkStringLength(this.state.newItemText);
 
     return (
       <li className="list-group-item">
         <form className="form-inline">
-          <div className={classNames("form-group", { 'has-success': isValid }, { 'has-error': !isValid })}>
+          <div className={classNames('form-group', { 'has-success': isValid }, { 'has-error': !isValid })}>
             <label>{order}. </label>
             {this.state.isBeingEdited ? (
               <span>
