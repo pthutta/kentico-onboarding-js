@@ -7,23 +7,26 @@ export class List extends PureComponent {
     super();
 
     this.state = {
+      newItem: '',
       items: []
     };
-
-    this.newItem = React.createRef();
   }
 
   _addItem = () => {
-    const { items } = this.state;
+    const { items, newItem } = this.state;
 
     this.setState({
       items: items.concat([{
         id: this._uuidv4(),
-        text: this.newItem.current.value
+        text: newItem
       }])
     });
 
-    this.newItem.current.value = '';
+    this.state.newItem = '';
+  };
+
+  _handleItemChange = (e) => {
+    this.setState({ newItem: e.target.value });
   };
 
   _saveItem = (id, newValue) => {
@@ -49,7 +52,8 @@ export class List extends PureComponent {
   };
 
   render() {
-    const { items } = this.state;
+    const { items, newItem } = this.state;
+    const isEnabled = newItem.trim().length > 0;
 
     return (
       <div className="row">
@@ -74,9 +78,9 @@ export class List extends PureComponent {
                 ))}
               </ul>
               <form className="form-inline">
-                <div className="form-group">
-                  <input type="text" className="form-control" ref={this.newItem} placeholder="New item"/>
-                  <button type="button" className="btn btn-default" onClick={this._addItem}>Add</button>
+                <div className={"form-group " + (isEnabled ? "has-success" : "has-error")}>
+                  <input type="text" className="form-control" value={this.state.newItem} placeholder="New item" onChange={this._handleItemChange} required/>
+                  <button type="button" className="btn btn-default" onClick={this._addItem} disabled={!isEnabled}>Add</button>
                 </div>
               </form>
             </pre>

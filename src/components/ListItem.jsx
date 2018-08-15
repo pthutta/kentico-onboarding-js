@@ -1,15 +1,18 @@
 import React, { PureComponent } from 'react';
 
 export class ListItem extends PureComponent {
-  constructor() {
+  constructor(props) {
     super();
 
     this.state = {
+      newItemText: props.text,
       isBeingEdited: false
     };
-
-    this.newItemText = React.createRef();
   }
+
+  _handleItemTextChange = (e) => {
+    this.setState({ newItemText: e.target.value });
+  };
 
   _labelOnClick = () => {
     this.setState(state => {
@@ -19,7 +22,7 @@ export class ListItem extends PureComponent {
 
   _saveOnClick = () => {
     const { id, onSave } = this.props;
-    onSave(id, this.newItemText.current.value);
+    onSave(id, this.state.newItemText);
     this.setState({
       isBeingEdited: false
     });
@@ -35,16 +38,18 @@ export class ListItem extends PureComponent {
 
   render() {
     const { order, text } = this.props;
+    const { newItemText } = this.state;
+    const isEnabled = newItemText.trim().length > 0;
 
     return (
       <li className="list-group-item">
         <form className="form-inline">
-          <div className="form-group">
+          <div className={"form-group " + (isEnabled ? "has-success" : "has-error")}>
             <label>{order}. </label>
             {this.state.isBeingEdited ? (
               <span>
-                <input className="form-control" ref={this.newItemText} defaultValue={text}/>
-                <button type="button" className="btn btn-primary" onClick={this._saveOnClick}>Save</button>
+                <input className="form-control" value={this.state.newItemText} onChange={this._handleItemTextChange}/>
+                <button type="button" className="btn btn-primary" onClick={this._saveOnClick} disabled={!isEnabled}>Save</button>
                 <button type="button" className="btn btn-default" onClick={this._labelOnClick}>Cancel</button>
                 <button type="button" className="btn btn-danger" onClick={this._deleteOnClick}>Delete</button>
               </span>
