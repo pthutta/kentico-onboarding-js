@@ -1,8 +1,21 @@
 import React, { PureComponent } from 'react';
+import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 export class ListItem extends PureComponent {
+  static displayName = 'List Item';
+
+  static propTypes = {
+    order: PropTypes.number,
+    onSave: PropTypes.func,
+    onDelete: PropTypes.func,
+    id: PropTypes.string,
+    text: PropTypes.string,
+    isBeingEdited: PropTypes.bool
+  };
+
   constructor(props) {
-    super();
+    super(props);
 
     this.state = {
       newItemText: props.text,
@@ -10,41 +23,39 @@ export class ListItem extends PureComponent {
     };
   }
 
-  _handleItemTextChange = (e) => {
-    this.setState({ newItemText: e.target.value });
+  _handleItemTextChange = e => {
+    e.persist();
+    this.setState(() => ({ newItemText: e.target.value }));
   };
 
   _labelOnClick = () => {
-    this.setState(state => {
-      return { isBeingEdited: !state.isBeingEdited };
-    });
+    this.setState((state, props) => ({
+      isBeingEdited: !state.isBeingEdited,
+      newItemText: props.text
+    }));
   };
 
   _saveOnClick = () => {
     const { id, onSave } = this.props;
     onSave(id, this.state.newItemText);
-    this.setState({
-      isBeingEdited: false
-    });
+    this.setState(() => ({ isBeingEdited: false }));
   };
 
   _deleteOnClick = () => {
     const { id, onDelete } = this.props;
     onDelete(id);
-    this.setState({
-      isBeingEdited: false
-    });
+    this.setState(() => ({ isBeingEdited: false }));
   };
 
   render() {
     const { order, text } = this.props;
     const { newItemText } = this.state;
-    const isEnabled = newItemText.trim().length > 0;
+    const isEnabled = newItemText.trim().length > 0; // util
 
     return (
       <li className="list-group-item">
         <form className="form-inline">
-          <div className={"form-group " + (isEnabled ? "has-success" : "has-error")}>
+          <div className={classNames("form-group", { 'has-success': isEnabled }, { 'has-error': !isEnabled })}>
             <label>{order}. </label>
             {this.state.isBeingEdited ? (
               <span>

@@ -3,8 +3,10 @@ import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 
 export class List extends PureComponent {
-  constructor() {
-    super();
+  static displayName = 'List';
+
+  constructor(props) {
+    super(props);
 
     this.state = {
       newItem: '',
@@ -13,28 +15,26 @@ export class List extends PureComponent {
   }
 
   _addItem = () => {
-    const { items, newItem } = this.state;
-
-    this.setState({
-      items: items.concat([{
+    this.setState(state => ({
+      items: state.items.concat([{
         id: this._uuidv4(),
-        text: newItem
-      }])
-    });
-
-    this.state.newItem = '';
+        text: state.newItem
+      }]),
+      newItem: ''
+    }));
   };
 
-  _handleItemChange = (e) => {
-    this.setState({ newItem: e.target.value });
+  _handleItemChange = e => {
+    e.persist();
+    this.setState(() => ({ newItem: e.target.value }));
   };
 
   _saveItem = (id, newValue) => {
-    this.setState(state => {
-      const items = state.items.slice();
-      items.find(i => i.id === id).text = newValue;
-      return { items };
-    });
+    this.setState(state => ({
+      items: state.items.map(item => (item.id === id
+        ? { ...item, text: newValue }
+        : item))
+    }));
   };
 
   _deleteItem = id => {
@@ -44,7 +44,7 @@ export class List extends PureComponent {
     });
   };
 
-  _uuidv4 = () => {
+  _uuidv4 = () => { // sr, export, name, npm?, testy, return
     return ([1e7] + -1e3 + -4e3 + -8e3 + -1e11)
       .replace(/[018]/g, c => (c ^ crypto.getRandomValues(new Uint8Array(1))[0] & 15 >> c / 4)
         .toString(16)
@@ -53,7 +53,7 @@ export class List extends PureComponent {
 
   render() {
     const { items, newItem } = this.state;
-    const isEnabled = newItem.trim().length > 0;
+    const isEnabled = newItem.trim().length > 0; // util funkcia
 
     return (
       <div className="row">
@@ -77,9 +77,9 @@ export class List extends PureComponent {
                   />
                 ))}
               </ul>
-              <form className="form-inline">
+              <form className="form-inline"> {/* nova komponenta */}
                 <div className={"form-group " + (isEnabled ? "has-success" : "has-error")}>
-                  <input type="text" className="form-control" value={this.state.newItem} placeholder="New item" onChange={this._handleItemChange} required/>
+                  <input type="text" className="form-control" value={this.state.newItem} placeholder="New item" onChange={this._handleItemChange}/>
                   <button type="button" className="btn btn-default" onClick={this._addItem} disabled={!isEnabled}>Add</button>
                 </div>
               </form>
