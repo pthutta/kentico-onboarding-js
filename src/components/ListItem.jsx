@@ -27,27 +27,31 @@ export class ListItem extends PureComponent {
 
   _deleteOnClick = () => {
     const { id, onDelete } = this.props;
-    onDelete(id);
     this.setState({
       isBeingEdited: false
     });
+    onDelete(id);
   };
 
   render() {
     const { order, text } = this.props;
 
     return (
-      <div>
-        <label>{order}.</label>
-        {this.state.isBeingEdited ? (
-          <span>
-            <input defaultValue={text} ref={this.newItemText}/>
-            <button type="submit" onClick={this._saveOnClick}>Save</button>
-            <button type="submit" onClick={this._labelOnClick}>Cancel</button>
-            <button type="submit" onClick={this._deleteOnClick}>Delete</button>
-          </span>
-        ) : <label onClick={this._labelOnClick}>{text}</label>}
-      </div>
+      <li className="list-group-item">
+        <form className="form-inline">
+          <div className="form-group">
+            <label className="card-text">{order}. </label>
+            {this.state.isBeingEdited ? (
+              <span>
+                <input defaultValue={text} ref={this.newItemText} className="form-control"/>
+                <button type="submit" onClick={this._saveOnClick} className="btn btn-primary">Save</button>
+                <button type="submit" onClick={this._labelOnClick} className="btn btn-default">Cancel</button>
+                <button type="submit" onClick={this._deleteOnClick} className="btn btn-danger">Delete</button>
+              </span>
+            ) : <label onClick={this._labelOnClick} className="card-text">{text}</label>}
+          </div>
+        </form>
+      </li>
     );
   }
 }

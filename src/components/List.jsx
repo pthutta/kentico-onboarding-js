@@ -35,12 +35,12 @@ export class List extends PureComponent {
     });
   };
 
-  _deleteItem = id => {
+  _deleteItem = id => { // deletion of item leaves field with incorrect text
     this.setState(state => {
       const items = state.items.filter(i => i.id !== id);
       return { items };
     });
-  }
+  };
 
   _uuidv4 = () => {
     return (
@@ -77,9 +77,15 @@ export class List extends PureComponent {
         <div className="row">
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
-              {items.map((item, i) => <ListItem key={i} order={i + 1} onSave={this._saveItem} onDelete={this._deleteItem} {...item} />)}
-              <input ref={this.newItem} type="text"/>
-              <button type="submit" onClick={this._addItem}>Add</button>
+              <ul className="list-group list-group-flush">
+                {items.map((item, i) => <ListItem key={i} order={i + 1} onSave={this._saveItem} onDelete={this._deleteItem} {...item} />)}
+              </ul>
+              <form className="form-inline">
+                <div className="form-group">
+                  <input ref={this.newItem} className="form-control" type="text"/>
+                  <button type="button" className="btn btn-default" onClick={this._addItem}>Add</button>
+                </div>
+              </form>
             </pre>
           </div>
         </div>
