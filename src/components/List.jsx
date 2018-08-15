@@ -78,7 +78,7 @@ export class List extends PureComponent {
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
               <ul className="list-group list-group-flush">
-                {items.map((item, i) => <ListItem key={i} order={i + 1} onSave={this._saveItem} onDelete={this._deleteItem} {...item} />)}
+                {items.map((item, i) => <ListItem key={item.id} order={i + 1} onSave={this._saveItem} onDelete={this._deleteItem} {...item} />)}
               </ul>
               <form className="form-inline">
                 <div className="form-group">
