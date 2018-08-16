@@ -67,20 +67,23 @@ export class EditListItem extends PureComponent {
             onClick={this._saveOnClick}
             disabled={!isValid}
             title={isValid ? '' : 'Please enter text'}
-            value="Save"
-          />
+          >
+            Save
+          </button>
           <button
             type="button"
             className="btn btn-default"
             onClick={this._cancelOnClick}
-            value="Cancel"
-          />
+          >
+            Cancel
+          </button>
           <button
             type="button"
             className="btn btn-danger"
             onClick={this._deleteOnClick}
-            value="Delete"
-          />
+          >
+            Delete
+          </button>
         </span>
       </div>
     );

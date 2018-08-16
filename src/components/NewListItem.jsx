@@ -59,8 +59,9 @@ export class NewListItem extends PureComponent {
                 ? ''
                 : 'Please enter text'
             }
-            value="Add"
-          />
+          >
+            Add
+          </button>
         </div>
       </form>
     );
