@@ -1,73 +1,32 @@
-import React, { PureComponent } from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-import classNames from 'classnames';
-import { checkStringLength } from '../utils/UtilFunctions';
+import { EditListItem } from './EditListItem';
+import { DisplayListItem } from './DisplayListItem';
 
-export class ListItem extends PureComponent {
-  static displayName = 'List Item';
+export const ListItem = ({
+  id, text, isBeingEdited, order, onSave, onDelete
+}) => {
+  return (
+    <li className="list-group-item">
+      <form className="form-inline">
+        <div>
+          <label>{order}. </label>
+          {isBeingEdited ? (
+            <EditListItem id={id} text={text} onSave={onSave} onDelete={onDelete}/>
+          ) : <DisplayListItem id={id} text={text} onSave={onSave} />}
+        </div>
+      </form>
+    </li>
+  );
+};
 
-  static propTypes = {
-    order: PropTypes.number,
-    onSave: PropTypes.func,
-    onDelete: PropTypes.func,
-    id: PropTypes.string,
-    text: PropTypes.string,
-    isBeingEdited: PropTypes.bool
-  };
+ListItem.displayName = 'List Item';
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      newItemText: props.text,
-      isBeingEdited: false
-    };
-  }
-
-  _handleItemTextChange = e => {
-    e.persist();
-    this.setState(() => ({ newItemText: e.target.value }));
-  };
-
-  _labelOnClick = () => {
-    this.setState((state, props) => ({
-      isBeingEdited: !state.isBeingEdited,
-      newItemText: props.text
-    }));
-  };
-
-  _saveOnClick = () => {
-    const { id, onSave } = this.props;
-    onSave(id, this.state.newItemText);
-    this.setState(() => ({ isBeingEdited: false }));
-  };
-
-  _deleteOnClick = () => {
-    const { id, onDelete } = this.props;
-    onDelete(id);
-    this.setState(() => ({ isBeingEdited: false }));
-  };
-
-  render() {
-    const { order, text } = this.props;
-    const isValid = checkStringLength(this.state.newItemText);
-
-    return (
-      <li className="list-group-item">
-        <form className="form-inline">
-          <div className={classNames('form-group', { 'has-success': isValid }, { 'has-error': !isValid })}>
-            <label>{order}. </label>
-            {this.state.isBeingEdited ? (
-              <span>
-                <input className="form-control" value={this.state.newItemText} onChange={this._handleItemTextChange}/>
-                <button type="button" className="btn btn-primary" onClick={this._saveOnClick} disabled={!isValid}>Save</button>
-                <button type="button" className="btn btn-default" onClick={this._labelOnClick}>Cancel</button>
-                <button type="button" className="btn btn-danger" onClick={this._deleteOnClick}>Delete</button>
-              </span>
-            ) : <label onClick={this._labelOnClick}>{text}</label>}
-          </div>
-        </form>
-      </li>
-    );
-  }
-}
+ListItem.propTypes = {
+  order: PropTypes.number.isRequired,
+  onSave: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  isBeingEdited: PropTypes.bool.isRequired
+};

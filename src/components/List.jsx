@@ -20,7 +20,8 @@ export class List extends PureComponent {
     this.setState(state => ({
       items: state.items.concat([{
         id: generateUUID(),
-        text: state.newItem
+        text: state.newItem,
+        isBeingEdited: false
       }]),
       newItem: ''
     }));
@@ -31,19 +32,17 @@ export class List extends PureComponent {
     this.setState(() => ({ newItem: e.target.value }));
   };
 
-  _saveItem = (id, newValue) => {
+  _saveItem = item => {
+    const { id } = item;
     this.setState(state => ({
-      items: state.items.map(item => (item.id === id
-        ? { ...item, text: newValue }
-        : item))
+      items: state.items.map(i => (i.id === id ? item : i))
     }));
   };
 
   _deleteItem = id => {
-    this.setState(state => {
-      const items = state.items.filter(i => i.id !== id);
-      return { items };
-    });
+    this.setState(state => ({
+      items: state.items.filter(i => i.id !== id)
+    }));
   };
 
   render() {
