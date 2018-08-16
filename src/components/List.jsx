@@ -11,42 +11,37 @@ export class List extends PureComponent {
     super(props);
 
     this.state = {
-      newItem: '',
       items: []
     };
   }
 
-  _addItem = () => {
+  _addItem = newItemText => {
     this.setState(state => ({
       items: state.items.concat([{
         id: generateUUID(),
-        text: state.newItem,
+        text: newItemText,
         isBeingEdited: false
-      }]),
-      newItem: ''
+      }])
     }));
   };
 
-  _handleItemChange = e => {
-    e.persist();
-    this.setState(() => ({ newItem: e.target.value }));
-  };
-
-  _saveItem = item => {
-    const { id } = item;
+  _saveItem = changedItem => {
+    const { id } = changedItem;
     this.setState(state => ({
-      items: state.items.map(i => (i.id === id ? item : i))
+      items: state.items.map(item => (item.id === id
+        ? changedItem
+        : item))
     }));
   };
 
   _deleteItem = id => {
     this.setState(state => ({
-      items: state.items.filter(i => i.id !== id)
+      items: state.items.filter(item => item.id !== id)
     }));
   };
 
   render() {
-    const { items, newItem } = this.state;
+    const { items } = this.state;
 
     return (
       <div className="row">
@@ -70,7 +65,7 @@ export class List extends PureComponent {
                   />
                 ))}
               </ul>
-              <NewListItem newItem={newItem} handleItemChange={this._handleItemChange} addItem={this._addItem}/>
+              <NewListItem addItem={this._addItem}/>
             </pre>
           </div>
         </div>

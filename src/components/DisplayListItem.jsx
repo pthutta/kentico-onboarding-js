@@ -2,7 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
 export class DisplayListItem extends PureComponent {
-  static displayName = 'Display List Item';
+  static displayName = 'DisplayListItem';
 
   static propTypes = {
     id: PropTypes.string.isRequired,

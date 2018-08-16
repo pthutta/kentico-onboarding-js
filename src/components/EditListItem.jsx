@@ -4,7 +4,7 @@ import classNames from 'classnames';
 import { validateString } from '../utils/UtilFunctions';
 
 export class EditListItem extends PureComponent {
-  static displayName = 'Edit List Item';
+  static displayName = 'EditListItem';
 
   static propTypes = {
     id: PropTypes.string.isRequired,
@@ -49,12 +49,38 @@ export class EditListItem extends PureComponent {
     const isValid = validateString(this.state.newItemText);
 
     return (
-      <div className={classNames('form-group', { 'has-success': isValid }, { 'has-error': !isValid })}>
+      <div
+        className={classNames('form-group', {
+          'has-success': isValid,
+          'has-error': !isValid
+        })}
+      >
         <span>
-          <input className="form-control" value={this.state.newItemText} onChange={this._handleItemTextChange}/>
-          <button type="button" className="btn btn-primary" onClick={this._saveOnClick} disabled={!isValid} title={isValid ? '' : 'Please enter text'}>Save</button>
-          <button type="button" className="btn btn-default" onClick={this._cancelOnClick}>Cancel</button>
-          <button type="button" className="btn btn-danger" onClick={this._deleteOnClick}>Delete</button>
+          <input
+            className="form-control"
+            value={this.state.newItemText}
+            onChange={this._handleItemTextChange}
+          />
+          <button
+            type="button"
+            className="btn btn-primary"
+            onClick={this._saveOnClick}
+            disabled={!isValid}
+            title={isValid ? '' : 'Please enter text'}
+            value="Save"
+          />
+          <button
+            type="button"
+            className="btn btn-default"
+            onClick={this._cancelOnClick}
+            value="Cancel"
+          />
+          <button
+            type="button"
+            className="btn btn-danger"
+            onClick={this._deleteOnClick}
+            value="Delete"
+          />
         </span>
       </div>
     );
