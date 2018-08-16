@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { checkStringLength } from '../utils/UtilFunctions';
+import { validateString } from '../utils/UtilFunctions';
 
 export class EditListItem extends PureComponent {
   static displayName = 'Edit List Item';
@@ -46,7 +46,7 @@ export class EditListItem extends PureComponent {
   };
 
   render() {
-    const isValid = checkStringLength(this.state.newItemText);
+    const isValid = validateString(this.state.newItemText);
 
     return (
       <div className={classNames('form-group', { 'has-success': isValid }, { 'has-error': !isValid })}>

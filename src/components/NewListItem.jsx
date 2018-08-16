@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { checkStringLength } from '../utils/UtilFunctions';
+import { validateString } from '../utils/UtilFunctions';
 
 export const NewListItem = ({ newItem, handleItemChange, addItem }) => {
-  const isValid = checkStringLength(newItem);
+  const isValid = validateString(newItem);
 
   return (
     <form className="form-inline">
