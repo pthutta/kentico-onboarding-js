@@ -1,27 +1,45 @@
 import React, { PureComponent } from 'react';
+import { OrderedMap, Record } from 'immutable';
 import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 import { generateUuid } from '../utils/generateUuid';
 import { NewListItem } from './NewListItem';
 
+const ItemRecord = Record({
+  id: '',
+  text: 'New item',
+  isBeingEdited: false
+});
+
 export class List extends PureComponent {
   static displayName = 'List';
 
-  state = {
-    items: []
-  };
-
-  _addItem = newItemText => {
-    const newItem = {
-      id: generateUuid(),
-      text: newItemText,
-      isBeingEdited: false
+    state = {
+      items: OrderedMap()
     };
 
+  _addItem = newItemText => {
+    const key = generateUuid();
     this.setState(state => ({
-      items: [...state.items, newItem]
+      items: state.items.set(key, ({
+        id: key,
+        text: newItemText,
+        isBeingEdited: false
+      }))
     }));
   };
+
+  /*
+   _addItem = newItemText => {
+    const key = generateUUID();
+    this.setState(state => ({
+      items: state.items.set(key, new ItemRecord({
+        id: key,
+        text: newItemText
+      }))
+    }));
+  };
+  */
 
   _saveItemText = (id, text) =>
     this.setState(state => ({
@@ -45,6 +63,8 @@ export class List extends PureComponent {
     }));
 
   render() {
+    const items = this.state.items.valueSeq();
+
     return (
       <div className="row">
         <div className="row">
@@ -57,7 +77,7 @@ export class List extends PureComponent {
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
               <ul className="list-group list-group-flush">
-                {this.state.items.map((item, i) => (
+                {items.map((item, i) => (
                   <ListItem
                     key={item.id}
                     order={i + 1}
