@@ -74,7 +74,7 @@ export class EditListItem extends PureComponent {
                   className="btn btn-default"
                   onClick={this._cancelEditing}
                 >
-                    Cancel
+                  Cancel
                 </button>
                 <button
                   type="button"

@@ -1,15 +1,10 @@
 import React, { PureComponent } from 'react';
-import { OrderedMap, Record } from 'immutable';
+import { OrderedMap } from 'immutable';
 import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 import { generateUuid } from '../utils/generateUuid';
 import { NewListItem } from './NewListItem';
-
-const ItemRecord = Record({
-  id: '',
-  text: 'New item',
-  isBeingEdited: false
-});
+import { ItemRecord } from '../entities/itemRecord';
 
 export class List extends PureComponent {
   static displayName = 'List';
@@ -18,48 +13,31 @@ export class List extends PureComponent {
       items: OrderedMap()
     };
 
-  _addItem = newItemText => {
-    const key = generateUuid();
-    this.setState(state => ({
-      items: state.items.set(key, ({
-        id: key,
-        text: newItemText,
-        isBeingEdited: false
-      }))
-    }));
-  };
-
-  /*
    _addItem = newItemText => {
-    const key = generateUUID();
+     const item = new ItemRecord({
+       id: generateUuid(),
+       text: newItemText
+     });
+     this.setState(state => ({
+       items: state.items.set(item.id, item)
+     }));
+   };
+
+  _saveItemText = (id, text) => {
+    const changedItem = new ItemRecord({ id, text });
     this.setState(state => ({
-      items: state.items.set(key, new ItemRecord({
-        id: key,
-        text: newItemText
-      }))
+      items: state.items.update(id, () => changedItem)
     }));
   };
-  */
-
-  _saveItemText = (id, text) =>
-    this.setState(state => ({
-      items: state.items.map(item => (item.id === id
-        ? { ...item, text, isBeingEdited: false }
-        : item
-      ))
-    }));
 
   _deleteItem = id =>
     this.setState(state => ({
-      items: state.items.filter(item => item.id !== id)
+      items: state.items.delete(id)
     }));
 
   _toggleItemEditing = id =>
     this.setState(state => ({
-      items: state.items.map(item => (item.id === id
-        ? { ...item, isBeingEdited: !item.isBeingEdited }
-        : item
-      ))
+      items: state.items.update(id, item => item.set('isBeingEdited', !item.isBeingEdited))
     }));
 
   render() {
