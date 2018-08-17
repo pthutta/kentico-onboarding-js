@@ -4,7 +4,7 @@ import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 import { generateUuid } from '../utils/generateUuid';
 import { NewListItem } from './NewListItem';
-import { ItemRecord } from '../entities/itemRecord';
+import { ItemRecord } from '../models/itemRecord';
 
 export class List extends PureComponent {
   static displayName = 'List';
@@ -41,7 +41,9 @@ export class List extends PureComponent {
     }));
 
   render() {
-    const items = this.state.items.valueSeq();
+    const items = this.state
+      .items
+      .valueSeq();
 
     return (
       <div className="row">
