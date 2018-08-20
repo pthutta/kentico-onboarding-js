@@ -13,7 +13,7 @@ export class EditListItem extends PureComponent {
     }).isRequired,
     onSave: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
-    onSetItemEditing: PropTypes.func.isRequired
+    onCancel: PropTypes.func.isRequired
   };
 
   state = {
@@ -25,14 +25,12 @@ export class EditListItem extends PureComponent {
     this.setState(() => ({ itemText: value }));
   };
 
-  _cancelEditing = () => this.props.onSetItemEditing(this.props.item.id, false);
-
   _saveNewItemText = () => {
     this.props.onSave(
       this.props.item.id,
       this.state.itemText
     );
-    this._cancelEditing();
+    this.props.onCancel();
   };
 
   _deleteItem = () => this.props.onDelete(this.props.item.id);
@@ -68,7 +66,7 @@ export class EditListItem extends PureComponent {
           <button
             type="button"
             className="btn btn-default"
-            onClick={this._cancelEditing}
+            onClick={this.props.onCancel}
           >
             Cancel
           </button>
