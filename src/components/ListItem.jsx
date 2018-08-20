@@ -4,16 +4,18 @@ import { EditListItem } from './EditListItem';
 import { DisplayListItem } from './DisplayListItem';
 
 export const ListItem = ({
-  id, text, isBeingEdited, order, onSave, onDelete
+  item, order, onSave, onDelete, onSetItemEditing
 }) => (
     <li className="list-group-item">
       <form className="form-inline">
         <div>
-          <label>{order}. </label>
+          <div className="form-group">
+            <label>{order}. </label>
+          </div>
           {
-            isBeingEdited
-              ? <EditListItem id={id} text={text} onSave={onSave} onDelete={onDelete}/>
-              : <DisplayListItem id={id} text={text} onSave={onSave}/>
+            item.isBeingEdited
+              ? <EditListItem item={item} onSave={onSave} onDelete={onDelete} onSetItemEditing={onSetItemEditing}/>
+              : <DisplayListItem item={item} onSetItemEditing={onSetItemEditing}/>
           }
         </div>
       </form>
@@ -25,7 +27,10 @@ ListItem.propTypes = {
   order: PropTypes.number.isRequired,
   onSave: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
-  id: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  isBeingEdited: PropTypes.bool.isRequired
+  onSetItemEditing: PropTypes.func.isRequired,
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    isBeingEdited: PropTypes.bool.isRequired
+  }).isRequired
 };

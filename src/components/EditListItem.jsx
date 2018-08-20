@@ -7,52 +7,55 @@ export class EditListItem extends PureComponent {
   static displayName = 'EditListItem';
 
   static propTypes = {
-    id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
+    item: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired,
     onSave: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired
+    onDelete: PropTypes.func.isRequired,
+    onSetItemEditing: PropTypes.func.isRequired
   };
 
   state = {
-    newItemText: this.props.text
+    itemText: this.props.item.text
   };
 
   _storeInputValue = event => {
     const value = event.target.value;
-    this.setState(() => ({ newItemText: value }));
+    this.setState(() => ({ itemText: value }));
   };
 
-  _cancelEditing = () => {
-    const { id, text, onSave } = this.props;
-    onSave({ id, text, isBeingEdited: false });
-  };
+  _cancelEditing = () => this.props.onSetItemEditing(this.props.item.id, false);
 
   _saveNewItemText = () => {
-    const { id, onSave } = this.props;
-    onSave({ id, text: this.state.newItemText, isBeingEdited: false });
+    this.props.onSave(
+      this.props.item.id,
+      this.state.itemText
+    );
+    this._cancelEditing();
   };
 
-  _deleteItem = () => this.props.onDelete(this.props.id);
+  _deleteItem = () => this.props.onDelete(this.props.item.id);
 
   render() {
-    const isValid = isStringNonempty(this.state.newItemText);
+    const isValid = isStringNonempty(this.state.itemText);
     const title = isValid
       ? undefined
       : 'Please enter text';
 
     return (
       <div
-        className={classNames('form-group', {
+        className={classNames('input-group', {
           'has-success': isValid,
           'has-error': !isValid
         })}
       >
-        <span>
-          <input
-            className="form-control"
-            value={this.state.newItemText}
-            onChange={this._storeInputValue}
-          />
+        <input
+          className="form-control"
+          value={this.state.itemText}
+          onChange={this._storeInputValue}
+        />
+        <div className="input-group-btn">
           <button
             type="button"
             className="btn btn-primary"
@@ -76,7 +79,7 @@ export class EditListItem extends PureComponent {
           >
             Delete
           </button>
-        </span>
+        </div>
       </div>
     );
   }

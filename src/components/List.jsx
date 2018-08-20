@@ -23,12 +23,12 @@ export class List extends PureComponent {
     }));
   };
 
-  _saveItem = changedItem => {
-    const { id } = changedItem;
+  _saveItemText = (id, text) => {
     this.setState(state => ({
       items: state.items.map(item => (item.id === id
-        ? changedItem
-        : item))
+        ? { ...item, text }
+        : item
+      ))
     }));
   };
 
@@ -38,9 +38,16 @@ export class List extends PureComponent {
     }));
   };
 
-  render() {
-    const { items } = this.state;
+  _setItemEditing = (id, isBeingEdited) => {
+    this.setState(state => ({
+      items: state.items.map(item => (item.id === id
+        ? { ...item, isBeingEdited }
+        : item
+      ))
+    }));
+  };
 
+  render() {
     return (
       <div className="row">
         <div className="row">
@@ -53,13 +60,14 @@ export class List extends PureComponent {
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
               <ul className="list-group list-group-flush">
-                {items.map((item, i) => (
+                {this.state.items.map((item, i) => (
                   <ListItem
                     key={item.id}
                     order={i + 1}
-                    onSave={this._saveItem}
+                    onSave={this._saveItemText}
                     onDelete={this._deleteItem}
-                    {...item}
+                    onSetItemEditing={this._setItemEditing}
+                    item={item}
                   />
                 ))}
               </ul>

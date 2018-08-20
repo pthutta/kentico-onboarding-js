@@ -5,22 +5,19 @@ export class DisplayListItem extends PureComponent {
   static displayName = 'DisplayListItem';
 
   static propTypes = {
-    id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    onSave: PropTypes.func.isRequired
+    item: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired,
+    onSetItemEditing: PropTypes.func.isRequired,
   };
 
-  _enableEditing = () => {
-    const { id, text, onSave } = this.props;
-    onSave({ id, text, isBeingEdited: true });
-  };
+  _enableEditing = () => this.props.onSetItemEditing(this.props.item.id, true);
 
   render() {
-    const { text } = this.props;
-
     return (
-      <div onClick={this._enableEditing}>
-        <label>{text}</label>
+      <div className="form-group" onClick={this._enableEditing}>
+        <label>{this.props.item.text}</label>
       </div>
     );
   }
