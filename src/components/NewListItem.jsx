@@ -1,39 +1,36 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { validateString } from '../utils/UtilFunctions';
+import { isStringNonempty } from '../utils/isStringNonempty';
 
 export class NewListItem extends PureComponent {
   static displayName = 'NewListItem';
 
   static propTypes = {
-    addItem: PropTypes.func.isRequired
+    onAddItem: PropTypes.func.isRequired
   };
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      newItem: ''
-    };
-  }
-
-  _handleItemChange = e => {
-    e.persist();
-    this.setState(() => ({ newItem: e.target.value }));
+  state = {
+    itemText: ''
   };
 
-  _buttonOnClick = () => {
-    const { addItem } = this.props;
-    const { newItem } = this.state;
-    addItem(newItem);
-    this.setState(() => ({ newItem: '' }));
+  _storeInputValue = event => {
+    const value = event.target.value;
+    this.setState(() => ({ itemText: value }));
+  };
+
+  _addNewItem = () => {
+    this.props.onAddItem(this.state.itemText);
+    this.setState(() => ({ itemText: '' }));
   };
 
   render() {
-    const { newItem } = this.state;
+    const { itemText } = this.state;
+    const isValid = isStringNonempty(itemText);
+    const title = isValid
+      ? undefined
+      : 'Please enter text';
 
-    const isValid = validateString(newItem);
     return (
       <form className="form-inline">
         <div
@@ -45,20 +42,16 @@ export class NewListItem extends PureComponent {
           <input
             type="text"
             className="form-control"
-            value={newItem}
+            value={itemText}
             placeholder="New item"
-            onChange={this._handleItemChange}
+            onChange={this._storeInputValue}
           />
           <button
             type="button"
             className="btn btn-default"
-            onClick={this._buttonOnClick}
+            onClick={this._addNewItem}
             disabled={!isValid}
-            title={
-              isValid
-                ? ''
-                : 'Please enter text'
-            }
+            title={title}
           >
             Add
           </button>

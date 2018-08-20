@@ -1,27 +1,25 @@
 import React, { PureComponent } from 'react';
 import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
-import { generateUUID } from '../utils/UtilFunctions';
+import { generateUuid } from '../utils/generateUuid';
 import { NewListItem } from './NewListItem';
 
 export class List extends PureComponent {
   static displayName = 'List';
 
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      items: []
-    };
-  }
+  state = {
+    items: []
+  };
 
   _addItem = newItemText => {
+    const newItem = {
+      id: generateUuid(),
+      text: newItemText,
+      isBeingEdited: false
+    };
+
     this.setState(state => ({
-      items: state.items.concat([{
-        id: generateUUID(),
-        text: newItemText,
-        isBeingEdited: false
-      }])
+      items: [...state.items, newItem]
     }));
   };
 
@@ -65,7 +63,7 @@ export class List extends PureComponent {
                   />
                 ))}
               </ul>
-              <NewListItem addItem={this._addItem}/>
+              <NewListItem onAddItem={this._addItem}/>
             </pre>
           </div>
         </div>

@@ -10,7 +10,7 @@ export class DisplayListItem extends PureComponent {
     onSave: PropTypes.func.isRequired
   };
 
-  _labelOnClick = () => {
+  _enableEditing = () => {
     const { id, text, onSave } = this.props;
     onSave({ id, text, isBeingEdited: true });
   };
@@ -19,7 +19,9 @@ export class DisplayListItem extends PureComponent {
     const { text } = this.props;
 
     return (
-      <label onClick={this._labelOnClick}>{text}</label>
+      <div onClick={this._enableEditing}>
+        <label>{text}</label>
+      </div>
     );
   }
 }
