@@ -11,7 +11,6 @@ DisplayListItem.displayName = 'DisplayListItem';
 
 DisplayListItem.propTypes = {
   item: PropTypes.shape({
-    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired
   }).isRequired,
   onEnableEditing: PropTypes.func.isRequired,

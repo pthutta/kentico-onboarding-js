@@ -2,14 +2,38 @@ import { isStringNonempty } from './isStringNonempty';
 
 describe('isStringNonempty', () => {
   it('returns false for empty string', () => {
-    expect(isStringNonempty('')).toBeFalsy();
+    const input = '';
+
+    const result = isStringNonempty(input);
+
+    expect(result).toBeFalsy();
   });
 
-  it('returns false for string with whitespaces', () => {
-    expect(isStringNonempty('        ')).toBeFalsy();
-  });
+  let inputs = [
+    '        ',
+    ' \t\r',
+    '\n   \t'
+  ];
 
-  it('returns true for correct string', () => {
-    expect(isStringNonempty('  John Doe ')).toBeTruthy();
-  });
+  inputs.forEach(input =>
+    it('returns false for string with whitespaces', () => {
+      const result = isStringNonempty(input);
+
+      expect(result).toBeFalsy();
+    })
+  );
+
+  inputs = [
+    '  John Doe ',
+    'John Doe  ',
+    'Just John'
+  ];
+
+  inputs.forEach(input =>
+    it('returns true for nonempty string - ' + input, () => {
+      const result = isStringNonempty(input);
+
+      expect(result).toBeTruthy();
+    })
+  );
 });
