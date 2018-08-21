@@ -23,29 +23,26 @@ export class List extends PureComponent {
     }));
   };
 
-  _saveItemText = (id, text) => {
+  _saveItemText = (id, text) =>
     this.setState(state => ({
       items: state.items.map(item => (item.id === id
-        ? { ...item, text }
+        ? { ...item, text, isBeingEdited: false }
         : item
       ))
     }));
-  };
 
-  _deleteItem = id => {
+  _deleteItem = id =>
     this.setState(state => ({
       items: state.items.filter(item => item.id !== id)
     }));
-  };
 
-  _setItemEditing = (id, isBeingEdited) => {
+  _toggleItemEditing = id =>
     this.setState(state => ({
       items: state.items.map(item => (item.id === id
-        ? { ...item, isBeingEdited }
+        ? { ...item, isBeingEdited: !item.isBeingEdited }
         : item
       ))
     }));
-  };
 
   render() {
     return (
@@ -66,7 +63,7 @@ export class List extends PureComponent {
                     order={i + 1}
                     onSave={this._saveItemText}
                     onDelete={this._deleteItem}
-                    onSetItemEditing={this._setItemEditing}
+                    onToggleItemEditing={this._toggleItemEditing}
                     item={item}
                   />
                 ))}

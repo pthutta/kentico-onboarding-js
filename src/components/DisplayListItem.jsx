@@ -1,17 +1,32 @@
-import React from 'react';
+import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 
-export const DisplayListItem = ({ item, onEnableEditing }) => (
-  <div className="form-group" onClick={onEnableEditing}>
-    <label>{item.text}</label>
-  </div>
-);
+export class DisplayListItem extends PureComponent {
+  static displayName = 'DisplayListItem';
 
-DisplayListItem.displayName = 'DisplayListItem';
+  static propTypes = {
+    order: PropTypes.number.isRequired,
+    item: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired,
+    onEnableEditing: PropTypes.func.isRequired,
+  };
 
-DisplayListItem.propTypes = {
-  item: PropTypes.shape({
-    text: PropTypes.string.isRequired
-  }).isRequired,
-  onEnableEditing: PropTypes.func.isRequired,
-};
+  _enableEditing = () => this.props.onEnableEditing(this.props.item.id);
+
+  render() {
+    return (
+      <li className="list-group-item">
+        <form className="form-inline" >
+          <div onClick={this._enableEditing}>
+            <div className="form-group">
+              <label>{this.props.order}. </label>
+              <label>{this.props.item.text}</label>
+            </div>
+          </div>
+        </form>
+      </li>
+    );
+  }
+}

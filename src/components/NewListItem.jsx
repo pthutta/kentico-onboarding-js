@@ -11,22 +11,22 @@ export class NewListItem extends PureComponent {
   };
 
   state = {
-    itemText: ''
+    inputText: ''
   };
 
   _storeInputValue = event => {
     const value = event.target.value;
-    this.setState(() => ({ itemText: value }));
+    this.setState(() => ({ inputText: value }));
   };
 
   _addNewItem = () => {
-    this.props.onAddItem(this.state.itemText);
-    this.setState(() => ({ itemText: '' }));
+    this.props.onAddItem(this.state.inputText);
+    this.setState(() => ({ inputText: '' }));
   };
 
   render() {
-    const { itemText } = this.state;
-    const isValid = isStringNonempty(itemText);
+    const { inputText } = this.state;
+    const isValid = isStringNonempty(inputText);
     const title = isValid
       ? undefined
       : 'Please enter text';
@@ -42,7 +42,7 @@ export class NewListItem extends PureComponent {
           <input
             type="text"
             className="form-control"
-            value={itemText}
+            value={inputText}
             placeholder="New item"
             onChange={this._storeInputValue}
           />
