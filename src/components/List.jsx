@@ -26,7 +26,7 @@ export class List extends PureComponent {
   _saveItemText = (id, text) => {
     const changedItem = new ItemRecord({ id, text });
     this.setState(state => ({
-      items: state.items.update(id, () => changedItem)
+      items: state.items.set(id, changedItem)
     }));
   };
 
@@ -37,7 +37,9 @@ export class List extends PureComponent {
 
   _toggleItemEditing = id =>
     this.setState(state => ({
-      items: state.items.update(id, item => item.set('isBeingEdited', !item.isBeingEdited))
+      items: state.items.update(id, item =>
+        item.set('isBeingEdited', !item.isBeingEdited)
+      )
     }));
 
   render() {
