@@ -1,26 +1,18 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { EditListItem } from './EditListItem';
-import { DisplayListItem } from './DisplayListItem';
+import { EditListItem } from '../containers/EditListItem';
+import { DisplayListItem } from '../containers/DisplayListItem';
+import { ItemRecord } from '../models/itemRecord';
 
-export const ListItem = ({
-  item, order, onSave, onDelete, onToggleItemEditing
-}) => (
+export const ListItem = ({ item, order }) => (
   item.isBeingEdited
-    ? <EditListItem item={item} order={order} onSave={onSave} onDelete={onDelete} onCancel={onToggleItemEditing} />
-    : <DisplayListItem item={item} order={order} onEnableEditing={onToggleItemEditing} />
+    ? <EditListItem item={item} order={order} />
+    : <DisplayListItem item={item} order={order} />
 );
 
 ListItem.displayName = 'ListItem';
 
 ListItem.propTypes = {
   order: PropTypes.number.isRequired,
-  item: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired,
-    isBeingEdited: PropTypes.bool.isRequired,
-  }).isRequired,
-  onSave: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onToggleItemEditing: PropTypes.func.isRequired
+  item: PropTypes.instanceOf(ItemRecord).isRequired,
 };
