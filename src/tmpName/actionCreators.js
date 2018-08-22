@@ -17,6 +17,6 @@ export const deleteItem = id => ({
 });
 
 export const toggleItemEditing = id => ({
-  type: ActionType.ADD_ITEM,
+  type: ActionType.TOGGLE_ITEM_EDITING,
   id
 });
