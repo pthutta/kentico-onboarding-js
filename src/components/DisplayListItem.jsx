@@ -6,14 +6,12 @@ export class DisplayListItem extends PureComponent {
 
   static propTypes = {
     order: PropTypes.number.isRequired,
-    item: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired,
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
     onEnableEditing: PropTypes.func.isRequired
   };
 
-  _enableEditing = () => this.props.onEnableEditing(this.props.item.id);
+  _enableEditing = () => this.props.onEnableEditing(this.props.id);
 
   render() {
     return (
@@ -22,7 +20,7 @@ export class DisplayListItem extends PureComponent {
           <div onClick={this._enableEditing}>
             <div className="form-group">
               <label>{this.props.order}. </label>
-              <label>{this.props.item.text}</label>
+              <label>{this.props.text}</label>
             </div>
           </div>
         </form>

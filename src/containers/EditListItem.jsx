@@ -6,6 +6,10 @@ import {
 } from '../tmpName/actionCreators';
 import { EditListItem as EditListItemComponent } from '../components/EditListItem';
 
+const mapStateToProps = (state, ownProps) => ({
+  text: state.items.get(ownProps.id).text
+});
+
 const mapDispatchToProps = dispatch => ({
   onSave: (id, text) => dispatch(saveItemText(id, text)),
   onDelete: id => dispatch(deleteItem(id)),
@@ -13,6 +17,6 @@ const mapDispatchToProps = dispatch => ({
 });
 
 export const EditListItem = connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(EditListItemComponent);

@@ -1,11 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { OrderedMap } from 'immutable';
+import { Seq } from 'immutable';
 import { TsComponent } from './TsComponent.tsx';
-import { ListItem } from './ListItem';
+import { ListItem } from '../containers/ListItem';
 import { NewListItem } from '../containers/NewListItem';
 
-export const List = ({ items }) => (
+export const List = ({ itemIds }) => (
   <div className="row">
     <div className="row">
       <div className="col-sm-12 text-center">
@@ -17,11 +17,11 @@ export const List = ({ items }) => (
       <div className="col-sm-12 col-md-offset-2 col-md-8">
         <pre>
           <ul className="list-group list-group-flush">
-            {items.valueSeq().map((item, i) => (
+            {itemIds.map((itemId, i) => (
               <ListItem
-                key={item.id}
+                key={itemId}
                 order={i + 1}
-                item={item}
+                id={itemId}
               />
             ))}
           </ul>
@@ -33,6 +33,7 @@ export const List = ({ items }) => (
 );
 
 List.displayName = 'List';
+
 List.propTypes = {
-  items: PropTypes.instanceOf(OrderedMap)
+  itemIds: PropTypes.instanceOf(Seq).isRequired
 };

@@ -8,17 +8,15 @@ export class EditListItem extends PureComponent {
 
   static propTypes = {
     order: PropTypes.number.isRequired,
-    item: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired,
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
     onSave: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired
   };
 
   state = {
-    inputText: this.props.item.text
+    inputText: this.props.text
   };
 
   _storeInputValue = event => {
@@ -26,15 +24,15 @@ export class EditListItem extends PureComponent {
     this.setState(() => ({ inputText: value }));
   };
 
-  _cancelEditing = () => this.props.onCancel(this.props.item.id);
+  _cancelEditing = () => this.props.onCancel(this.props.id);
 
   _saveNewItemText = () =>
     this.props.onSave(
-      this.props.item.id,
+      this.props.id,
       this.state.inputText
     );
 
-  _deleteItem = () => this.props.onDelete(this.props.item.id);
+  _deleteItem = () => this.props.onDelete(this.props.id);
 
   render() {
     const isValid = isStringNonempty(this.state.inputText);
