@@ -5,7 +5,7 @@ import { List as ListComponent } from '../components/List';
 const getAllIds = memoizee(items => items.keySeq());
 
 const mapStateToProps = state => ({
-  itemIds: getAllIds(state.items)
+  itemIds: getAllIds(state.list.items)
 });
 
 export const List = connect(mapStateToProps)(ListComponent);

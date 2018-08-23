@@ -3,11 +3,11 @@ import {
   deleteItem,
   saveItemText,
   toggleItemEditing
-} from '../tmpName/actionCreators';
+} from '../actions/actionCreators';
 import { EditListItem as EditListItemComponent } from '../components/EditListItem';
 
-const mapStateToProps = (state, ownProps) => ({
-  text: state.items.get(ownProps.id).text
+const mapStateToProps = ({ list: { items } }, ownProps) => ({
+  text: items.get(ownProps.id).text
 });
 
 const mapDispatchToProps = dispatch => ({

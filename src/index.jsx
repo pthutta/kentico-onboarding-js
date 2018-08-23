@@ -6,7 +6,7 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { logger } from 'redux-logger';
-import { todoApp } from './tmpName/reducers';
+import { todoApp } from './reducers/todoApp';
 import { App } from './App';
 
 const store = createStore(

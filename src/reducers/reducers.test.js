@@ -1,13 +1,12 @@
 import { OrderedMap } from 'immutable';
-import * as ActionType from './actionTypes';
 import {
   addItem,
   saveItemText,
   deleteItem,
   toggleItemEditing
-} from './actionCreators';
-import { todoApp } from './reducers';
-import { ItemRecord } from '../models/itemRecord';
+} from '../actions/actionCreators';
+import { todoApp } from './todoApp';
+import { Item } from '../models/Item';
 
 describe('todoApp', () => {
   it('initializes state with OrderedMap', () => {
@@ -28,7 +27,7 @@ describe('todoApp', () => {
       };
       const text = 'Learn redux';
       const expectedState = {
-        items: previousState.items.set('1', new ItemRecord({ text }))
+        items: previousState.items.set('1', new Item({ text }))
       };
 
       const result = todoApp(previousState, addItem(text));
@@ -43,14 +42,14 @@ describe('todoApp', () => {
         items: OrderedMap([
           [
             '1',
-            new ItemRecord({
+            new Item({
               id: '1',
               text: 'Learn react'
             })
           ],
           [
             '2',
-            new ItemRecord({
+            new Item({
               id: '2',
               text: 'Write app'
             })
@@ -62,14 +61,14 @@ describe('todoApp', () => {
         items: OrderedMap([
           [
             '1',
-            new ItemRecord({
+            new Item({
               id: '1',
               text
             })
           ],
           [
             '2',
-            new ItemRecord({
+            new Item({
               id: '2',
               text: 'Write app'
             })
@@ -89,14 +88,14 @@ describe('todoApp', () => {
         items: OrderedMap([
           [
             '1',
-            new ItemRecord({
+            new Item({
               id: '1',
               text: 'Learn react'
             })
           ],
           [
             '2',
-            new ItemRecord({
+            new Item({
               id: '2',
               text: 'Write app'
             })
@@ -107,7 +106,7 @@ describe('todoApp', () => {
         items: OrderedMap([
           [
             '2',
-            new ItemRecord({
+            new Item({
               id: '2',
               text: 'Write app'
             })
@@ -128,14 +127,14 @@ describe('todoApp', () => {
         items: OrderedMap([
           [
             '1',
-            new ItemRecord({
+            new Item({
               id: '1',
               text: 'Learn react'
             })
           ],
           [
             '2',
-            new ItemRecord({
+            new Item({
               id: '2',
               text: 'Write app'
             })
@@ -146,14 +145,14 @@ describe('todoApp', () => {
         items: OrderedMap([
           [
             '1',
-            new ItemRecord({
+            new Item({
               id: '1',
               text: 'Learn react'
             })
           ],
           [
             '2',
-            new ItemRecord({
+            new Item({
               id: '2',
               text: 'Write app',
               isBeingEdited: true

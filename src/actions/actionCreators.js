@@ -1,22 +1,27 @@
 import * as ActionType from './actionTypes';
+import { addItemCreator } from './addItemCreator';
+import { generateUuid } from '../utils/generateUuid';
 
-export const addItem = text => ({
-  type: ActionType.ADD_ITEM,
-  text
-});
+export const addItem = addItemCreator(generateUuid);
 
 export const saveItemText = (id, text) => ({
   type: ActionType.SAVE_ITEM_TEXT,
-  id,
-  text
+  payload: {
+    id,
+    text
+  }
 });
 
 export const deleteItem = id => ({
   type: ActionType.DELETE_ITEM,
-  id
+  payload: {
+    id
+  }
 });
 
 export const toggleItemEditing = id => ({
   type: ActionType.TOGGLE_ITEM_EDITING,
-  id
+  payload: {
+    id
+  }
 });
