@@ -2,14 +2,16 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
-import { ItemRecord } from '../models/itemRecord';
 
 export class EditListItem extends PureComponent {
   static displayName = 'EditListItem';
 
   static propTypes = {
     order: PropTypes.number.isRequired,
-    item: PropTypes.instanceOf(ItemRecord).isRequired,
+    item: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired,
     onSave: PropTypes.func.isRequired,
     onDelete: PropTypes.func.isRequired,
     onCancel: PropTypes.func.isRequired

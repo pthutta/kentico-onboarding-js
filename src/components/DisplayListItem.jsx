@@ -1,13 +1,15 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { ItemRecord } from '../models/itemRecord';
 
 export class DisplayListItem extends PureComponent {
   static displayName = 'DisplayListItem';
 
   static propTypes = {
     order: PropTypes.number.isRequired,
-    item: PropTypes.instanceOf(ItemRecord).isRequired,
+    item: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      text: PropTypes.string.isRequired
+    }).isRequired,
     onEnableEditing: PropTypes.func.isRequired
   };
 

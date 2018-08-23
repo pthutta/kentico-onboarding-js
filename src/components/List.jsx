@@ -4,7 +4,7 @@ import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 import { generateUuid } from '../utils/generateUuid';
 import { NewListItem } from './NewListItem';
-import { ItemRecord } from '../models/itemRecord';
+import { Item } from '../models/itemRecord';
 
 export class List extends PureComponent {
   static displayName = 'List';
@@ -14,7 +14,7 @@ export class List extends PureComponent {
     };
 
    _addItem = newItemText => {
-     const item = new ItemRecord({
+     const item = new Item({
        id: generateUuid(),
        text: newItemText
      });
@@ -23,12 +23,15 @@ export class List extends PureComponent {
      }));
    };
 
-  _saveItemText = (id, text) => {
-    const changedItem = new ItemRecord({ id, text });
+  _saveItemText = (id, text) =>
     this.setState(state => ({
-      items: state.items.set(id, changedItem)
+      items: state.items.merge(id, item =>
+        item.merge({
+          'text': text,
+          'isBeingEdited': false
+        })
+      )
     }));
-  };
 
   _deleteItem = id =>
     this.setState(state => ({

@@ -2,7 +2,6 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { EditListItem } from './EditListItem';
 import { DisplayListItem } from './DisplayListItem';
-import { ItemRecord } from '../models/itemRecord';
 
 export const ListItem = ({
   item, order, onSave, onDelete, onToggleItemEditing
@@ -16,7 +15,11 @@ ListItem.displayName = 'ListItem';
 
 ListItem.propTypes = {
   order: PropTypes.number.isRequired,
-  item: PropTypes.instanceOf(ItemRecord).isRequired,
+  item: PropTypes.shape({
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    isBeingEdited: PropTypes.bool.isRequired,
+  }).isRequired,
   onSave: PropTypes.func.isRequired,
   onDelete: PropTypes.func.isRequired,
   onToggleItemEditing: PropTypes.func.isRequired
