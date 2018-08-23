@@ -10,7 +10,7 @@ export class DisplayListItem extends PureComponent {
       id: PropTypes.string.isRequired,
       text: PropTypes.string.isRequired
     }).isRequired,
-    onEnableEditing: PropTypes.func.isRequired,
+    onEnableEditing: PropTypes.func.isRequired
   };
 
   _enableEditing = () => this.props.onEnableEditing(this.props.item.id);

@@ -1,55 +1,59 @@
 import React, { PureComponent } from 'react';
+import { OrderedMap } from 'immutable';
 import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 import { generateUuid } from '../utils/generateUuid';
 import { NewListItem } from './NewListItem';
+import { Item } from '../models/Item';
 
 export class List extends PureComponent {
   static displayName = 'List';
 
   state = {
-    items: []
+    items: OrderedMap()
   };
 
   _addItem = newItemText => {
-    const newItem = {
+    const item = new Item({
       id: generateUuid(),
-      text: newItemText,
-      isBeingEdited: false
-    };
-
+      text: newItemText
+    });
     this.setState(state => ({
-      items: [...state.items, newItem]
+      items: state.items.set(item.id, item)
     }));
   };
 
   _saveItemText = (id, text) =>
     this.setState(state => ({
-      items: state.items.map(item => (item.id === id
-        ? { ...item, text, isBeingEdited: false }
-        : item
-      ))
+      items: state.items.mergeIn([id], {
+        text,
+        isBeingEdited: false
+      })
     }));
 
   _deleteItem = id =>
     this.setState(state => ({
-      items: state.items.filter(item => item.id !== id)
+      items: state.items.delete(id)
     }));
 
   _toggleItemEditing = id =>
     this.setState(state => ({
-      items: state.items.map(item => (item.id === id
-        ? { ...item, isBeingEdited: !item.isBeingEdited }
-        : item
-      ))
+      items: state.items.updateIn([id, 'isBeingEdited'], isBeingEdited => !isBeingEdited)
     }));
 
   render() {
+    const items = this.state
+      .items
+      .valueSeq();
+
     return (
       <div className="row">
         <div className="row">
           <div className="col-sm-12 text-center">
-            <TsComponent name="𝕱𝖆𝖓𝖈𝖞" invisible />
+            <TsComponent
+              name="𝕱𝖆𝖓𝖈𝖞"
+              invisible
+            />
           </div>
         </div>
 
@@ -57,7 +61,7 @@ export class List extends PureComponent {
           <div className="col-sm-12 col-md-offset-2 col-md-8">
             <pre>
               <ul className="list-group list-group-flush">
-                {this.state.items.map((item, i) => (
+                {items.map((item, i) => (
                   <ListItem
                     key={item.id}
                     order={i + 1}
@@ -68,7 +72,7 @@ export class List extends PureComponent {
                   />
                 ))}
               </ul>
-              <NewListItem onAddItem={this._addItem}/>
+              <NewListItem onAddItem={this._addItem} />
             </pre>
           </div>
         </div>
