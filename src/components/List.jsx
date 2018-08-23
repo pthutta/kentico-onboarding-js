@@ -4,7 +4,7 @@ import { TsComponent } from './TsComponent.tsx';
 import { ListItem } from './ListItem';
 import { generateUuid } from '../utils/generateUuid';
 import { NewListItem } from './NewListItem';
-import { Item } from '../models/itemRecord';
+import { Item } from '../models/Item';
 
 export class List extends PureComponent {
   static displayName = 'List';
@@ -25,7 +25,7 @@ export class List extends PureComponent {
 
   _saveItemText = (id, text) =>
     this.setState(state => ({
-      items: state.items.merge(id, item =>
+      items: state.items.update(id, item =>
         item.merge({
           'text': text,
           'isBeingEdited': false
