@@ -9,28 +9,26 @@ import { Item } from '../models/Item';
 export class List extends PureComponent {
   static displayName = 'List';
 
-    state = {
-      items: OrderedMap()
-    };
+  state = {
+    items: OrderedMap()
+  };
 
-   _addItem = newItemText => {
-     const item = new Item({
-       id: generateUuid(),
-       text: newItemText
-     });
-     this.setState(state => ({
-       items: state.items.set(item.id, item)
-     }));
-   };
+  _addItem = newItemText => {
+    const item = new Item({
+      id: generateUuid(),
+      text: newItemText
+    });
+    this.setState(state => ({
+      items: state.items.set(item.id, item)
+    }));
+  };
 
   _saveItemText = (id, text) =>
     this.setState(state => ({
-      items: state.items.update(id, item =>
-        item.merge({
-          'text': text,
-          'isBeingEdited': false
-        })
-      )
+      items: state.items.mergeIn([id], {
+        text,
+        isBeingEdited: false
+      })
     }));
 
   _deleteItem = id =>
@@ -40,9 +38,7 @@ export class List extends PureComponent {
 
   _toggleItemEditing = id =>
     this.setState(state => ({
-      items: state.items.update(id, item =>
-        item.set('isBeingEdited', !item.isBeingEdited)
-      )
+      items: state.items.updateIn([id, 'isBeingEdited'], isBeingEdited => !isBeingEdited)
     }));
 
   render() {
@@ -54,7 +50,10 @@ export class List extends PureComponent {
       <div className="row">
         <div className="row">
           <div className="col-sm-12 text-center">
-            <TsComponent name="𝕱𝖆𝖓𝖈𝖞" invisible />
+            <TsComponent
+              name="𝕱𝖆𝖓𝖈𝖞"
+              invisible
+            />
           </div>
         </div>
 
@@ -73,7 +72,7 @@ export class List extends PureComponent {
                   />
                 ))}
               </ul>
-              <NewListItem onAddItem={this._addItem}/>
+              <NewListItem onAddItem={this._addItem} />
             </pre>
           </div>
         </div>
