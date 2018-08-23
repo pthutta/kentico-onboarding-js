@@ -15,12 +15,12 @@ ListItem.displayName = 'ListItem';
 
 ListItem.propTypes = {
   order: PropTypes.number.isRequired,
-  onSave: PropTypes.func.isRequired,
-  onDelete: PropTypes.func.isRequired,
-  onToggleItemEditing: PropTypes.func.isRequired,
   item: PropTypes.shape({
     id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
-    isBeingEdited: PropTypes.bool.isRequired
-  }).isRequired
+    isBeingEdited: PropTypes.bool.isRequired,
+  }).isRequired,
+  onSave: PropTypes.func.isRequired,
+  onDelete: PropTypes.func.isRequired,
+  onToggleItemEditing: PropTypes.func.isRequired
 };
