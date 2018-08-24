@@ -3,15 +3,22 @@ import { PureComponent, ReactNode } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
+import { ValidationMap } from 'prop-types';
 
-export interface INewListItemProps {
+export interface INewListItemDispatchProps {
   readonly addItem: (text: string) => void;
 }
 
-export class NewListItem extends PureComponent<INewListItemProps> {
-  static displayName = 'NewListItem';
+type INewListItemProps = INewListItemDispatchProps;
 
-  static propTypes = {
+interface INewListItemState {
+  readonly inputText: string;
+}
+
+export class NewListItem extends PureComponent<INewListItemProps, INewListItemState> {
+  static displayName: string = 'NewListItem';
+
+  static propTypes: ValidationMap<INewListItemProps> = {
     addItem: PropTypes.func.isRequired
   };
 
