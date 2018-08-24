@@ -1,21 +1,25 @@
 import * as ActionType from './actionTypes';
 import {
-  addItem,
   deleteItem,
   saveItemText,
   toggleItemEditing
 } from './actionCreators';
 import { generateUuid } from '../utils/generateUuid';
+import { addItemCreator } from './addItemCreator';
 
 describe('addItem', () => {
   it('returns action with correct text', () => {
     const text = 'Learn react';
+    const idGenerator = () => '1';
     const expectedResult = {
       type: ActionType.ADD_ITEM,
-      text
+      payload: {
+        text,
+        id: idGenerator()
+      }
     };
 
-    const result = addItem(text);
+    const result = addItemCreator(idGenerator)(text);
 
     expect(result).toEqual(expectedResult);
   });
@@ -27,8 +31,10 @@ describe('saveItemText', () => {
     const id = generateUuid();
     const expectedResult = {
       type: ActionType.SAVE_ITEM_TEXT,
-      id,
-      text
+      payload: {
+        id,
+        text
+      }
     };
 
     const result = saveItemText(id, text);
@@ -42,7 +48,9 @@ describe('deleteItem', () => {
     const id = generateUuid();
     const expectedResult = {
       type: ActionType.DELETE_ITEM,
-      id
+      payload: {
+        id
+      }
     };
 
     const result = deleteItem(id);
@@ -56,7 +64,9 @@ describe('toggleItemEditing', () => {
     const id = generateUuid();
     const expectedResult = {
       type: ActionType.TOGGLE_ITEM_EDITING,
-      id
+      payload: {
+        id
+      }
     };
 
     const result = toggleItemEditing(id);
