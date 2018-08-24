@@ -22,6 +22,26 @@ describe('todoApp', () => {
     expect(result).toEqual(expectedState);
   });
 
+  it('returns previous state when it receives unknown action type', () => {
+    const previousState = {
+      list: {
+        items: OrderedMap([
+          [
+            '1',
+            new Item({
+              id: '1',
+              text: 'Learn redux'
+            })
+          ]
+        ])
+      }
+    };
+
+    const result = todoApp(previousState, { type: 'unknown', payload: {} });
+
+    expect(result).toEqual(previousState);
+  });
+
   describe('addItem', () => {
     it('returns state with correct text', () => {
       const previousState = {
