@@ -1,7 +1,7 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isStringNonempty } from '../utils/isStringNonempty';
+import { isStringNonempty } from '../utils/isStringNonempty.ts';
 
 export class EditListItem extends PureComponent {
   static displayName = 'EditListItem';

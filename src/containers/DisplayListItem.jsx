@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { toggleItemEditing } from '../actions/itemsActions';
+import { toggleItemEditing } from '../actions/actionCreators.ts';
 import { DisplayListItem as DisplayListItemComponent } from '../components/DisplayListItem';
 
 const mapStateToProps = ({ list: { items } }, ownProps) => ({

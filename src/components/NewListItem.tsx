@@ -1,9 +1,14 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { PureComponent, ReactNode } from 'react';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
 
-export class NewListItem extends PureComponent {
+export interface INewListItemProps {
+  readonly addItem: (text: string) => void;
+}
+
+export class NewListItem extends PureComponent<INewListItemProps> {
   static displayName = 'NewListItem';
 
   static propTypes = {
@@ -14,31 +19,30 @@ export class NewListItem extends PureComponent {
     inputText: ''
   };
 
-  _storeInputValue = event => {
-    const value = event.target.value;
+  _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const value: string = event.currentTarget.value;
     this.setState(() => ({ inputText: value }));
   };
 
-  _addNewItem = () => {
+  _addNewItem = (): void => {
     this.props.addItem(this.state.inputText);
     this.setState(() => ({ inputText: '' }));
   };
 
-  render() {
+  render(): ReactNode {
     const { inputText } = this.state;
-    const isValid = isStringNonempty(inputText);
-    const title = isValid
+    const isValid: boolean = isStringNonempty(inputText);
+    const title: any = isValid
       ? undefined
       : 'Please enter text';
+    const className: string = classNames('form-group', {
+      'has-success': isValid,
+      'has-error': !isValid
+    });
 
     return (
       <form className="form-inline">
-        <div
-          className={classNames('form-group', {
-            'has-success': isValid,
-            'has-error': !isValid
-          })}
-        >
+        <div className={className}>
           <input
             type="text"
             className="form-control"

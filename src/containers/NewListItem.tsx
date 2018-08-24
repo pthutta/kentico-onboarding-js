@@ -1,4 +1,4 @@
-import connect from 'react-redux/es/connect/connect';
+import { connect } from 'react-redux';
 import { addItem } from '../actions/itemsActions';
 import { NewListItem as NewListItemComponent } from '../components/NewListItem';
 
