@@ -1,9 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Seq } from 'immutable';
-import { TsComponent } from './TsComponent.tsx';
-import { ListItem } from '../containers/ListItem.tsx';
-import { NewListItem } from '../containers/NewListItem.tsx';
+import { TsComponent } from './TsComponent';
+import { ListItem } from '../containers/ListItem';
+import { NewListItem } from '../containers/NewListItem';
 
 export const List = ({ itemIds }) => (
   <div className="row">
