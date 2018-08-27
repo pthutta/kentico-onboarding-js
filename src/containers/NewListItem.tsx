@@ -1,13 +1,16 @@
 import { connect } from 'react-redux';
-import { addItem } from '../actions/itemsActions';
-import { NewListItem as NewListItemComponent } from '../components/NewListItem';
+import { addItem } from '../actions/actionCreators';
+import {
+  INewListItemDispatchProps,
+  NewListItem as NewListItemComponent
+} from '../components/NewListItem';
 import * as React from 'react';
 
 interface INewListItemContainerProps {
 
 }
 
-const mapDispatchToProps = {
+const mapDispatchToProps: INewListItemDispatchProps = {
   addItem
 };
 
