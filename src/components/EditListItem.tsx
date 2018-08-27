@@ -1,12 +1,35 @@
-import React, { PureComponent } from 'react';
-import PropTypes from 'prop-types';
+import * as React from 'react';
+import { PureComponent, ReactNode } from 'react';
+import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
-import { isStringNonempty } from '../utils/isStringNonempty.ts';
+import { isStringNonempty } from '../utils/isStringNonempty';
+import { ValidationMap } from 'prop-types';
 
-export class EditListItem extends PureComponent {
-  static displayName = 'EditListItem';
+export interface IEditListItemDispatchProps {
+  readonly save: (text: string) => void;
+  readonly delete: () => void;
+  readonly cancel: () => void;
+}
 
-  static propTypes = {
+export interface IEditListItemContainerProps {
+  readonly id: string;
+  readonly order: number;
+}
+
+export interface IEditListItemStateProps {
+  readonly text: string;
+}
+
+type IEditListItemProps = IEditListItemDispatchProps & IEditListItemStateProps & IEditListItemContainerProps;
+
+interface IEditListItemState {
+  readonly inputText: string;
+}
+
+export class EditListItem extends PureComponent<IEditListItemProps, IEditListItemState> {
+  static displayName: string = 'EditListItem';
+
+  static propTypes: ValidationMap<IEditListItemProps> = {
     order: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
@@ -19,18 +42,22 @@ export class EditListItem extends PureComponent {
     inputText: this.props.text
   };
 
-  _storeInputValue = event => {
-    const value = event.target.value;
+  _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
+    const value: string = event.target.value;
     this.setState(() => ({ inputText: value }));
   };
 
   _saveNewItemText = () => this.props.save(this.state.inputText);
 
-  render() {
-    const isValid = isStringNonempty(this.state.inputText);
-    const title = isValid
+  render(): ReactNode {
+    const isValid: boolean = isStringNonempty(this.state.inputText);
+    const title: any = isValid
       ? undefined
       : 'Please enter text';
+    const className = classNames('input-group', {
+      'has-success': isValid,
+      'has-error': !isValid
+    });
 
     return (
       <li className="list-group-item">
@@ -39,10 +66,7 @@ export class EditListItem extends PureComponent {
             <div className="form-group">
               <label>{this.props.order}. </label>
               <div
-                className={classNames('input-group', {
-                  'has-success': isValid,
-                  'has-error': !isValid
-                })}
+                className={className}
               >
               <input
                 className="form-control"

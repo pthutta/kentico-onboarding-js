@@ -17,6 +17,13 @@ export interface IDisplayListItemStateProps {
 
 type IDisplayListItemProps = IDisplayListItemDispatchProps & IDisplayListItemStateProps & IDisplayListItemContainerProps;
 
+const displayListItemPropTypes: ValidationMap<IDisplayListItemProps> = {
+  order: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  text: PropTypes.string.isRequired,
+  enableEditing: PropTypes.func.isRequired
+};
+
 export const DisplayListItem: React.StatelessComponent<IDisplayListItemProps> = ({ order, text, enableEditing }): JSX.Element => (
   <li className="list-group-item">
     <form className="form-inline" >
@@ -30,11 +37,6 @@ export const DisplayListItem: React.StatelessComponent<IDisplayListItemProps> = 
   </li>
 );
 
-DisplayListItem.displayName: string = 'DisplayListItem';
+DisplayListItem.displayName = 'DisplayListItem';
 
-DisplayListItem.propTypes: ValidationMap<IDisplayListItemProps> = {
-  order: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
-  text: PropTypes.string.isRequired,
-  enableEditing: PropTypes.func.isRequired
-};
+DisplayListItem.propTypes = displayListItemPropTypes;
