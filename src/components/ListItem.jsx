@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { EditListItem } from '../containers/EditListItem';
-import { DisplayListItem } from '../containers/DisplayListItem.jsx';
+import { DisplayListItem } from '../containers/DisplayListItem.tsx';
 
 export const ListItem = ({ order, id, isBeingEdited }) => (
   isBeingEdited
