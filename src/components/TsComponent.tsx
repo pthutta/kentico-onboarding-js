@@ -5,7 +5,7 @@ interface ITsComponentProps {
   invisible: boolean;
 }
 
-export class TsComponent extends React.Component<ITsComponentProps, undefined> {
+export class TsComponent extends React.Component<ITsComponentProps> {
   render(): JSX.Element {
     return (
       <h3
