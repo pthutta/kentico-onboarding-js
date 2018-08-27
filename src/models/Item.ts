@@ -1,6 +1,7 @@
 import { Record } from 'immutable';
+import { IItem } from './IItem';
 
-const defaultValues = {
+const defaultValues: IItem = {
   id: '',
   text: 'New item',
   isBeingEdited: false
