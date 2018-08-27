@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PureComponent, ReactNode } from 'react';
+import { PureComponent } from 'react';
 import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
 import classNames from 'classnames';
@@ -49,7 +49,7 @@ export class EditListItem extends PureComponent<IEditListItemProps, IEditListIte
 
   _saveNewItemText = () => this.props.save(this.state.inputText);
 
-  render(): ReactNode {
+  render(): JSX.Element {
     const isValid: boolean = isStringNonempty(this.state.inputText);
     const title: any = isValid
       ? undefined

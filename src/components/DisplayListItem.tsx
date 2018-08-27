@@ -3,7 +3,7 @@ import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
 
 export interface IDisplayListItemDispatchProps {
-  readonly enableEditing: (text: string) => void;
+  readonly enableEditing: () => void;
 }
 
 export interface IDisplayListItemContainerProps {
@@ -27,10 +27,10 @@ const displayListItemPropTypes: ValidationMap<IDisplayListItemProps> = {
 export const DisplayListItem: React.StatelessComponent<IDisplayListItemProps> = ({ order, text, enableEditing }): JSX.Element => (
   <li className="list-group-item">
     <form className="form-inline" >
-      <div onClick={this.enableEditing}>
+      <div onClick={enableEditing}>
         <div className="form-group">
-          <label>{this.props.order}. </label>
-          <label>{this.props.text}</label>
+          <label>{order}. </label>
+          <label>{text}</label>
         </div>
       </div>
     </form>

@@ -21,7 +21,7 @@ const listItemPropTypes: ValidationMap<IListItemProps> = {
   isBeingEdited: PropTypes.bool.isRequired
 };
 
-export const ListItem: React.StatelessComponent<IListItemProps> = ({ order, id, isBeingEdited }) => (
+export const ListItem: React.StatelessComponent<IListItemProps> = ({ order, id, isBeingEdited }): JSX.Element => (
   isBeingEdited
     ? <EditListItem id={id} order={order} />
     : <DisplayListItem id={id} order={order} />

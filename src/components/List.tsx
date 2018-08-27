@@ -16,7 +16,7 @@ const listPropTypes: ValidationMap<IListProps> = {
   itemIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
-export const List: SFC<IListProps> = ({ itemIds }) => {
+export const List: SFC<IListProps> = ({ itemIds }): JSX.Element => {
   const items = itemIds.map((itemId: string, i: number) => (
     <ListItem key={itemId} order={i + 1} id={itemId} />
   ));

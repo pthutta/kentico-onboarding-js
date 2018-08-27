@@ -36,7 +36,7 @@ export class NewListItem extends PureComponent<INewListItemProps, INewListItemSt
     this.setState(() => ({ inputText: '' }));
   };
 
-  render(): ReactNode {
+  render(): JSX.Element {
     const { inputText } = this.state;
     const isValid: boolean = isStringNonempty(inputText);
     const title: any = isValid
