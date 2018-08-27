@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { PureComponent, ReactNode } from 'react';
 import * as PropTypes from 'prop-types';
+import { ValidationMap } from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
-import { ValidationMap } from 'prop-types';
 
 export interface IEditListItemDispatchProps {
   readonly save: (text: string) => void;
