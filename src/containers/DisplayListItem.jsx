@@ -6,8 +6,8 @@ const mapStateToProps = ({ list: { items } }, ownProps) => ({
   text: items.get(ownProps.id).text
 });
 
-const mapDispatchToProps = dispatch => ({
-  onEnableEditing: id => dispatch(toggleItemEditing(id))
+const mapDispatchToProps = (dispatch, ownProps) => ({
+  onEnableEditing: dispatch(toggleItemEditing(ownProps.id))
 });
 
 export const DisplayListItem = connect(
