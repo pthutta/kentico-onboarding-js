@@ -24,15 +24,7 @@ export class EditListItem extends PureComponent {
     this.setState(() => ({ inputText: value }));
   };
 
-  _cancelEditing = () => this.props.onCancel(this.props.id);
-
-  _saveNewItemText = () =>
-    this.props.onSave(
-      this.props.id,
-      this.state.inputText
-    );
-
-  _deleteItem = () => this.props.onDelete(this.props.id);
+  _saveNewItemText = () => this.props.onSave(this.state.inputText);
 
   render() {
     const isValid = isStringNonempty(this.state.inputText);
@@ -43,7 +35,7 @@ export class EditListItem extends PureComponent {
     return (
       <li className="list-group-item">
         <form className="form-inline" >
-          <div onClick={this._enableEditing}>
+          <div>
             <div className="form-group">
               <label>{this.props.order}. </label>
               <div
@@ -70,14 +62,14 @@ export class EditListItem extends PureComponent {
                 <button
                   type="button"
                   className="btn btn-default"
-                  onClick={this._cancelEditing}
+                  onClick={this.props.onCancel}
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={this._deleteItem}
+                  onClick={this.props.onDelete}
                 >
                   Delete
                 </button>

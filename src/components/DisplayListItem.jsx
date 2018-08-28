@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const DisplayListItem = ({order, text, onEnableEditing}) => (
+export const DisplayListItem = ({ order, text, onEnableEditing }) => (
   <li className="list-group-item">
     <form className="form-inline" >
       <div onClick={onEnableEditing}>
