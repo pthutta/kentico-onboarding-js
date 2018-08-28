@@ -1,12 +1,4 @@
-import { OrderedMap } from 'immutable';
+import { combineReducers } from 'redux';
 import { list } from './list/list';
 
-const initialState = {
-  list: {
-    items: OrderedMap()
-  }
-};
-
-export const todoApp = (state = initialState, action) => ({
-  list: list(state.list, action)
-});
+export const todoApp = combineReducers({ list });

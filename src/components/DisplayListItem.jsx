@@ -6,8 +6,7 @@ export const DisplayListItem = ({ order, text, onEnableEditing }) => (
     <form className="form-inline" >
       <div onClick={onEnableEditing}>
         <div className="form-group">
-          <label>{order}. </label>
-          <label>{text}</label>
+          {order}. {text}
         </div>
       </div>
     </form>

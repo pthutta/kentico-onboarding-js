@@ -1,5 +1,4 @@
+import { combineReducers } from 'redux';
 import { items } from './items';
 
-export const list = (state, action) => ({
-  items: items(state.items, action)
-});
+export const list = combineReducers({ items });

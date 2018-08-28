@@ -6,11 +6,19 @@ import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { logger } from 'redux-logger';
+import { OrderedMap } from 'immutable';
 import { todoApp } from './reducers/todoApp';
 import { App } from './App';
 
+const initialState = {
+  list: {
+    items: OrderedMap()
+  }
+};
+
 const store = createStore(
   todoApp,
+  initialState,
   composeWithDevTools(applyMiddleware(logger))
 );
 
