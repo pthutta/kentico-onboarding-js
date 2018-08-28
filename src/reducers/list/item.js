@@ -1,5 +1,5 @@
-import * as ActionType from '../actions/actionTypes';
-import { Item } from '../models/Item';
+import * as ActionType from '../../actions/types/itemsActionTypes';
+import { Item } from '../../models/Item';
 
 export const item = (state, action) => {
   switch (action.type) {

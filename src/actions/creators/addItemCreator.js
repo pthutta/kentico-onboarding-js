@@ -1,4 +1,4 @@
-import * as ActionType from './actionTypes';
+import * as ActionType from '../types/itemsActionTypes';
 
 export const addItemCreator = idGenerator => text => ({
   type: ActionType.ADD_ITEM,

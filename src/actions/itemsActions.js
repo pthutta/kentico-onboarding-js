@@ -1,5 +1,5 @@
-import * as ActionType from './actionTypes';
-import { addItemCreator } from './addItemCreator';
+import * as ActionType from './types/itemsActionTypes';
+import { addItemCreator } from './creators/addItemCreator';
 import { generateUuid } from '../utils/generateUuid';
 
 export const addItem = addItemCreator(generateUuid);

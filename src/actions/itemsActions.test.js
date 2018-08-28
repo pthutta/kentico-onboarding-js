@@ -1,11 +1,11 @@
-import * as ActionType from './actionTypes';
+import * as ActionType from './types/itemsActionTypes';
 import {
   deleteItem,
   saveItemText,
   toggleItemEditing
-} from './actionCreators';
+} from './itemsActions';
 import { generateUuid } from '../utils/generateUuid';
-import { addItemCreator } from './addItemCreator';
+import { addItemCreator } from './creators/addItemCreator';
 
 describe('addItem', () => {
   it('returns action with correct text', () => {

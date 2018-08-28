@@ -3,7 +3,7 @@ import {
   deleteItem,
   saveItemText,
   toggleItemEditing
-} from '../actions/actionCreators';
+} from '../actions/itemsActions';
 import { EditListItem as EditListItemComponent } from '../components/EditListItem';
 
 const mapStateToProps = ({ list: { items } }, ownProps) => ({

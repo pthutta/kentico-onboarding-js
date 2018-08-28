@@ -3,10 +3,10 @@ import {
   saveItemText,
   deleteItem,
   toggleItemEditing
-} from '../actions/actionCreators';
+} from '../actions/itemsActions';
 import { todoApp } from './todoApp';
 import { Item } from '../models/Item';
-import { addItemCreator } from '../actions/addItemCreator';
+import { addItemCreator } from '../actions/creators/addItemCreator';
 
 describe('todoApp', () => {
   it('initializes state with OrderedMap', () => {

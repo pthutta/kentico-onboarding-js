@@ -1,5 +1,5 @@
 import { OrderedMap } from 'immutable';
-import { list } from './list';
+import { list } from './list/list';
 
 const initialState = {
   list: {

@@ -1,4 +1,4 @@
-import * as ActionType from '../actions/actionTypes';
+import * as ActionType from '../../actions/types/itemsActionTypes';
 import { item } from './item';
 
 export const items = (state, action) => {
