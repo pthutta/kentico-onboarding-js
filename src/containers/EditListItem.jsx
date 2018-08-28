@@ -11,9 +11,9 @@ const mapStateToProps = ({ list: { items } }, ownProps) => ({
 });
 
 const mapDispatchToProps = (dispatch, ownProps) => ({
-  onSave: text => dispatch(saveItemText(ownProps.id, text)),
-  onDelete: () => dispatch(deleteItem(ownProps.id)),
-  onCancel: () => dispatch(toggleItemEditing(ownProps.id))
+  save: text => dispatch(saveItemText(ownProps.id, text)),
+  delete: () => dispatch(deleteItem(ownProps.id)),
+  cancel: () => dispatch(toggleItemEditing(ownProps.id))
 });
 
 export const EditListItem = connect(

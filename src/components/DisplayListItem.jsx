@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-export const DisplayListItem = ({ order, text, onEnableEditing }) => (
+export const DisplayListItem = ({ order, text, enableEditing }) => (
   <li className="list-group-item">
     <form className="form-inline" >
-      <div onClick={onEnableEditing}>
+      <div onClick={enableEditing}>
         <div className="form-group">
           {order}. {text}
         </div>
@@ -19,5 +19,5 @@ DisplayListItem.propTypes = {
   order: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
-  onEnableEditing: PropTypes.func.isRequired
+  enableEditing: PropTypes.func.isRequired
 };
