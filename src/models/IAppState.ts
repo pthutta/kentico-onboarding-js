@@ -1,5 +1,5 @@
 import { IListState } from './IListState';
 
 export interface IAppState {
-  list: IListState;
+  readonly list: IListState;
 }

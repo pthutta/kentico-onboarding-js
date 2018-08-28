@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { logger } from 'redux-logger';
 import { OrderedMap } from 'immutable';
-import { todoApp } from './reducers/todoApp';
+import { todoApp } from './reducers/todoApp.ts';
 import { App } from './App.tsx';
 
 const initialState = {

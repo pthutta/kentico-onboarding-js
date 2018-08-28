@@ -1,6 +1,6 @@
 import { Record } from 'immutable';
 import { IItem } from './IItem';
-// interface read-only
+
 const defaultValues: IItem = {
   id: '',
   text: 'New item',
@@ -8,9 +8,9 @@ const defaultValues: IItem = {
 };
 
 export class Item extends Record(defaultValues, 'Item') implements IItem {
-  id: string;
-  isBeingEdited: boolean;
-  text: string;
+  readonly id: string;
+  readonly isBeingEdited: boolean;
+  readonly text: string;
 
   constructor(values?: Partial<IItem>) {
     values ? super(values) : super();

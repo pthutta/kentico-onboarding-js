@@ -5,4 +5,8 @@ export interface SaveItemTextAction extends IAction<'SAVE_ITEM_TEXT', {id: strin
 export interface DeleteItemAction extends IAction<'DELETE_ITEM', {id: string}> {}
 export interface ToggleItemEditingAction extends IAction<'TOGGLE_ITEM_EDITING', {id: string}> {}
 
-export type Actions = AddItemAction | SaveItemTextAction | DeleteItemAction | ToggleItemEditingAction;
+export type Actions =
+  | AddItemAction
+  | SaveItemTextAction
+  | DeleteItemAction
+  | ToggleItemEditingAction;

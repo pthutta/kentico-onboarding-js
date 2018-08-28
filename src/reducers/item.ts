@@ -17,7 +17,9 @@ export const item = (state: Item, action: Actions): IItem => {
       });
 
     case 'TOGGLE_ITEM_EDITING':
-      return state.with({ isBeingEdited: !state.isBeingEdited });
+      return state.with({
+        isBeingEdited: !state.isBeingEdited
+      });
 
     default:
       return state;
