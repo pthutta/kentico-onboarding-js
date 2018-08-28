@@ -2,7 +2,7 @@ import { Item } from '../models/Item';
 import { Actions } from '../actions/actionTypes';
 import { IItem } from '../models/IItem';
 
-export const item = (state = new Item(), action: Actions): IItem => {
+export const item = (state: Item, action: Actions): IItem => {
   switch (action.type) {
     case 'ADD_ITEM':
       return new Item({
