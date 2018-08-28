@@ -1,7 +1,7 @@
 import * as ActionType from '../../actions/types/itemsActionTypes';
 import { Item } from '../../models/Item';
 
-export const item = (state, action) => {
+export const item = (state = new Item(), action) => {
   switch (action.type) {
     case ActionType.ADD_ITEM:
       return new Item({
