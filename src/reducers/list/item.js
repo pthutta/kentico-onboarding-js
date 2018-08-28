@@ -1,22 +1,23 @@
-import * as ActionType from '../../actions/types/itemsActionTypes';
-import { Item } from '../../models/Item';
+import { Item } from '../models/Item';
+import { Actions } from '../actions/actionTypes';
+import { IItem } from '../models/IItem';
 
-export const item = (state = new Item(), action) => {
+export const item = (state = new Item(), action: Actions): IItem => {
   switch (action.type) {
-    case ActionType.ADD_ITEM:
+    case 'ADD_ITEM':
       return new Item({
         id: action.payload.id,
         text: action.payload.text
       });
 
-    case ActionType.SAVE_ITEM_TEXT:
-      return state.merge({
+    case 'SAVE_ITEM_TEXT':
+      return state.with({
         text: action.payload.text,
         isBeingEdited: false
       });
 
-    case ActionType.TOGGLE_ITEM_EDITING:
-      return state.set('isBeingEdited', !state.isBeingEdited);
+    case 'TOGGLE_ITEM_EDITING':
+      return state.with({ isBeingEdited: !state.isBeingEdited });
 
     default:
       return state;

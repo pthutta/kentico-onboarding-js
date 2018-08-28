@@ -1,5 +1,5 @@
 import * as React from 'react';
-import { PureComponent, ReactNode } from 'react';
+import { PureComponent } from 'react';
 import * as PropTypes from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';

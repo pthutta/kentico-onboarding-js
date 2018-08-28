@@ -1,4 +1,8 @@
-export const ADD_ITEM: string = 'ADD_ITEM';
-export const SAVE_ITEM_TEXT: string = 'SAVE_ITEM_TEXT';
-export const DELETE_ITEM: string = 'DELETE_ITEM';
-export const TOGGLE_ITEM_EDITING: string = 'TOGGLE_ITEM_EDITING';
+import { IAction } from '../models/IAction';
+
+export interface AddItemAction extends IAction<'ADD_ITEM', {id: string, text: string}> {}
+export interface SaveItemTextAction extends IAction<'SAVE_ITEM_TEXT', {id: string, text: string}> {}
+export interface DeleteItemAction extends IAction<'DELETE_ITEM', {id: string}> {}
+export interface ToggleItemEditingAction extends IAction<'TOGGLE_ITEM_EDITING', {id: string}> {}
+
+export type Actions = AddItemAction | SaveItemTextAction | DeleteItemAction | ToggleItemEditingAction;

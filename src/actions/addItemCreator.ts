@@ -1,8 +1,7 @@
-import * as ActionType from './actionTypes';
-import { IAction } from '../models/IAction';
+import { AddItemAction } from './actionTypes';
 
-export const addItemCreator = (idGenerator: () => string) => (text: string): IAction => ({
-  type: ActionType.ADD_ITEM,
+export const addItemCreator = (idGenerator: () => string) => (text: string): AddItemAction => ({
+  type: 'ADD_ITEM',
   payload: {
     text,
     id: idGenerator()
