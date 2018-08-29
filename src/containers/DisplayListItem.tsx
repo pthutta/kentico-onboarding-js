@@ -10,7 +10,7 @@ import {
 import { IAppState } from '../models/IAppState';
 
 export interface IDisplayListItemContainerProps {
-  readonly id: string;
+  readonly id: GUID;
   readonly order: number;
 }
 

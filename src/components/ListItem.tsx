@@ -5,7 +5,7 @@ import { EditListItem } from '../containers/EditListItem';
 import { DisplayListItem } from '../containers/DisplayListItem';
 
 export interface IListItemContainerProps {
-  readonly id: string;
+  readonly id: GUID;
   readonly order: number;
 }
 

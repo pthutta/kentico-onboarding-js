@@ -1,7 +1,7 @@
 import { Record } from 'immutable';
 
 export interface IItem {
-  readonly id: string;
+  readonly id: GUID;
   readonly text: string;
   readonly isBeingEdited: boolean;
 }
@@ -13,7 +13,7 @@ const defaultValues: IItem = {
 };
 
 export class Item extends Record(defaultValues, 'Item') implements IItem {
-  readonly id: string;
+  readonly id: GUID;
   readonly isBeingEdited: boolean;
   readonly text: string;
 

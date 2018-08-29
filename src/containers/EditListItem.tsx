@@ -13,7 +13,7 @@ import {
 import { IAppState } from '../models/IAppState';
 
 export interface IEditListItemContainerProps {
-  readonly id: string;
+  readonly id: GUID;
   readonly order: number;
 }
 

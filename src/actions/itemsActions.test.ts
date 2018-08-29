@@ -33,7 +33,7 @@ describe('addItem', () => {
 describe('saveItemText', () => {
   it('returns action with correct text and id', () => {
     const text: string = 'Learn redux';
-    const id: string = generateUuid();
+    const id: GUID = generateUuid();
     const expectedResult: SaveItemTextAction = {
       type: 'SAVE_ITEM_TEXT',
       payload: {
@@ -50,7 +50,7 @@ describe('saveItemText', () => {
 
 describe('deleteItem', () => {
   it('returns action with correct id', () => {
-    const id: string = generateUuid();
+    const id: GUID = generateUuid();
     const expectedResult: DeleteItemAction = {
       type: 'DELETE_ITEM',
       payload: {
@@ -66,7 +66,7 @@ describe('deleteItem', () => {
 
 describe('toggleItemEditing', () => {
   it('returns action with correct id', () => {
-    const id: string = generateUuid();
+    const id: GUID = generateUuid();
     const expectedResult: ToggleItemEditingAction = {
       type: 'TOGGLE_ITEM_EDITING',
       payload: {

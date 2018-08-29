@@ -9,7 +9,7 @@ import {
 
 export const addItem: (text: string) => AddItemAction = addItemCreator(generateUuid);
 
-export const saveItemText = (id: string, text: string): SaveItemTextAction => ({
+export const saveItemText = (id: GUID, text: string): SaveItemTextAction => ({
   type: 'SAVE_ITEM_TEXT',
   payload: {
     id,
@@ -17,14 +17,14 @@ export const saveItemText = (id: string, text: string): SaveItemTextAction => ({
   }
 });
 
-export const deleteItem = (id: string): DeleteItemAction => ({
+export const deleteItem = (id: GUID): DeleteItemAction => ({
   type: 'DELETE_ITEM',
   payload: {
     id
   }
 });
 
-export const toggleItemEditing = (id: string): ToggleItemEditingAction => ({
+export const toggleItemEditing = (id: GUID): ToggleItemEditingAction => ({
   type: 'TOGGLE_ITEM_EDITING',
   payload: {
     id
