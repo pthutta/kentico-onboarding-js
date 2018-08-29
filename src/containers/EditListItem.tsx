@@ -10,7 +10,7 @@ import {
   EditListItem as EditListItemComponent,
   IEditListItemStateProps, IEditListItemDispatchProps
 } from '../components/EditListItem';
-import { IAppState } from '../models/IAppState';
+import { IAppState } from '../stores/IAppState';
 
 export interface IEditListItemContainerProps {
   readonly id: GUID;

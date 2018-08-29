@@ -5,7 +5,7 @@ import {
   IListItemStateProps,
   ListItem as ListItemComponent
 } from '../components/ListItem';
-import { IAppState } from '../models/IAppState';
+import { IAppState } from '../stores/IAppState';
 
 const mapStateToProps = (state: IAppState, ownProps: IListItemContainerProps): IListItemStateProps => ({
   isBeingEdited: state.list.items.get(ownProps.id).isBeingEdited
