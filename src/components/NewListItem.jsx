@@ -7,7 +7,7 @@ export class NewListItem extends PureComponent {
   static displayName = 'NewListItem';
 
   static propTypes = {
-    onAddItem: PropTypes.func.isRequired
+    addItem: PropTypes.func.isRequired
   };
 
   state = {
@@ -20,7 +20,7 @@ export class NewListItem extends PureComponent {
   };
 
   _addNewItem = () => {
-    this.props.onAddItem(this.state.inputText);
+    this.props.addItem(this.state.inputText);
     this.setState(() => ({ inputText: '' }));
   };
 

@@ -20,9 +20,13 @@
     "bootstrap": "^3.3.7",
     "classnames": "^2.2.6",
     "immutable": "^3.8.2",
+    "memoizee": "^0.4.14",
     "prop-types": "^15.6.2",
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "redux-logger": "^3.0.6",
     "uuid": "^3.3.2"
   },
   "devDependencies": {
@@ -48,6 +52,7 @@
     "file-loader": "^1.1.11",
     "jest": "^23.4.1",
     "react-set-state-usage": "^2.0.1",
+    "redux-devtools-extension": "^2.13.5",
     "ts-jest": "^23.0.1",
     "ts-loader": "^4.4.2",
     "tslint": "^5.11.0",
