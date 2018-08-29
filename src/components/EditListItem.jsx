@@ -8,17 +8,15 @@ export class EditListItem extends PureComponent {
 
   static propTypes = {
     order: PropTypes.number.isRequired,
-    item: PropTypes.shape({
-      id: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired
-    }).isRequired,
-    onSave: PropTypes.func.isRequired,
-    onDelete: PropTypes.func.isRequired,
-    onCancel: PropTypes.func.isRequired
+    id: PropTypes.string.isRequired,
+    text: PropTypes.string.isRequired,
+    save: PropTypes.func.isRequired,
+    delete: PropTypes.func.isRequired,
+    cancel: PropTypes.func.isRequired
   };
 
   state = {
-    inputText: this.props.item.text
+    inputText: this.props.text
   };
 
   _storeInputValue = event => {
@@ -26,15 +24,7 @@ export class EditListItem extends PureComponent {
     this.setState(() => ({ inputText: value }));
   };
 
-  _cancelEditing = () => this.props.onCancel(this.props.item.id);
-
-  _saveNewItemText = () =>
-    this.props.onSave(
-      this.props.item.id,
-      this.state.inputText
-    );
-
-  _deleteItem = () => this.props.onDelete(this.props.item.id);
+  _saveNewItemText = () => this.props.save(this.state.inputText);
 
   render() {
     const isValid = isStringNonempty(this.state.inputText);
@@ -45,7 +35,7 @@ export class EditListItem extends PureComponent {
     return (
       <li className="list-group-item">
         <form className="form-inline" >
-          <div onClick={this._enableEditing}>
+          <div>
             <div className="form-group">
               <label>{this.props.order}. </label>
               <div
@@ -72,14 +62,14 @@ export class EditListItem extends PureComponent {
                 <button
                   type="button"
                   className="btn btn-default"
-                  onClick={this._cancelEditing}
+                  onClick={this.props.cancel}
                 >
                   Cancel
                 </button>
                 <button
                   type="button"
                   className="btn btn-danger"
-                  onClick={this._deleteItem}
+                  onClick={this.props.delete}
                 >
                   Delete
                 </button>
