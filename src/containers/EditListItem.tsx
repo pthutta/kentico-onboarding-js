@@ -8,9 +8,14 @@ import {
 } from '../actions/itemsActions';
 import {
   EditListItem as EditListItemComponent,
-  IEditListItemContainerProps, IEditListItemStateProps, IEditListItemDispatchProps
+  IEditListItemStateProps, IEditListItemDispatchProps
 } from '../components/EditListItem';
 import { IAppState } from '../models/IAppState';
+
+export interface IEditListItemContainerProps {
+  readonly id: string;
+  readonly order: number;
+}
 
 const mapStateToProps = (state: IAppState, ownProps: IEditListItemContainerProps): IEditListItemStateProps => ({
   text: state.list.items.get(ownProps.id).text
@@ -22,7 +27,18 @@ const mapDispatchToProps = (dispatch: Dispatch, ownProps: IEditListItemContainer
   cancel: () => dispatch(toggleItemEditing(ownProps.id))
 });
 
+const mergeProps = (stateProps: IEditListItemStateProps, dispatchProps: IEditListItemDispatchProps, ownProps: IEditListItemContainerProps) => {
+  const { order } = ownProps;
+
+  return {
+    ...stateProps,
+    ...dispatchProps,
+    order
+  };
+};
+
 export const EditListItem: React.ComponentClass<IEditListItemContainerProps> = connect(
   mapStateToProps,
-  mapDispatchToProps
+  mapDispatchToProps,
+  mergeProps
 )(EditListItemComponent);

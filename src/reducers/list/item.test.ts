@@ -6,7 +6,7 @@ import {
   saveItemText,
   toggleItemEditing
 } from '../../actions/itemsActions';
-import { IItem } from '../../models/IItem';
+import { IItem } from '../../models/Item';
 
 describe('item', () => {
   it('initializes state with default Item Record value', () => {

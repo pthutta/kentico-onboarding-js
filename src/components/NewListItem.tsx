@@ -9,20 +9,20 @@ export interface INewListItemDispatchProps {
   readonly addItem: (text: string) => void;
 }
 
-type INewListItemProps = INewListItemDispatchProps;
+type NewListItemProps = INewListItemDispatchProps;
 
 interface INewListItemState {
   readonly inputText: string;
 }
 
-export class NewListItem extends PureComponent<INewListItemProps, INewListItemState> {
+export class NewListItem extends PureComponent<NewListItemProps, INewListItemState> {
   static displayName: string = 'NewListItem';
 
-  static propTypes: ValidationMap<INewListItemProps> = {
+  static propTypes: ValidationMap<NewListItemProps> = {
     addItem: PropTypes.func.isRequired
   };
 
-  state = {
+  state: INewListItemState = {
     inputText: ''
   };
 
@@ -39,7 +39,7 @@ export class NewListItem extends PureComponent<INewListItemProps, INewListItemSt
   render(): JSX.Element {
     const { inputText } = this.state;
     const isValid: boolean = isStringNonempty(inputText);
-    const title: any = isValid
+    const title: string | undefined = isValid
       ? undefined
       : 'Please enter text';
     const className: string = classNames('form-group', {

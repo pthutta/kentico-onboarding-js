@@ -6,8 +6,7 @@ export interface IDisplayListItemDispatchProps {
   readonly enableEditing: () => void;
 }
 
-export interface IDisplayListItemContainerProps {
-  readonly id: string;
+export interface IDisplayListItemFilteredProps {
   readonly order: number;
 }
 
@@ -15,22 +14,20 @@ export interface IDisplayListItemStateProps {
   readonly text: string;
 }
 
-type IDisplayListItemProps = IDisplayListItemDispatchProps & IDisplayListItemStateProps & IDisplayListItemContainerProps;
+type DisplayListItemProps = IDisplayListItemDispatchProps & IDisplayListItemStateProps & IDisplayListItemFilteredProps;
 
-const displayListItemPropTypes: ValidationMap<IDisplayListItemProps> = {
+const displayListItemPropTypes: ValidationMap<DisplayListItemProps> = {
   order: PropTypes.number.isRequired,
-  id: PropTypes.string.isRequired,
   text: PropTypes.string.isRequired,
   enableEditing: PropTypes.func.isRequired
 };
 
-export const DisplayListItem: React.StatelessComponent<IDisplayListItemProps> = ({ order, text, enableEditing }): JSX.Element => (
+export const DisplayListItem: React.StatelessComponent<DisplayListItemProps> = ({ order, text, enableEditing }): JSX.Element => (
   <li className="list-group-item">
     <form className="form-inline" >
       <div onClick={enableEditing}>
         <div className="form-group">
-          <label>{order}. </label>
-          <label>{text}</label>
+          {order}. {text}
         </div>
       </div>
     </form>
@@ -38,5 +35,4 @@ export const DisplayListItem: React.StatelessComponent<IDisplayListItemProps> = 
 );
 
 DisplayListItem.displayName = 'DisplayListItem';
-
 DisplayListItem.propTypes = displayListItemPropTypes;

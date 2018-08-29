@@ -13,20 +13,19 @@ export interface IListItemStateProps {
   readonly isBeingEdited: boolean;
 }
 
-type IListItemProps = IListItemStateProps & IListItemContainerProps;
+type ListItemProps = IListItemStateProps & IListItemContainerProps;
 
-const listItemPropTypes: ValidationMap<IListItemProps> = {
+const listItemPropTypes: ValidationMap<ListItemProps> = {
   order: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
   isBeingEdited: PropTypes.bool.isRequired
 };
 
-export const ListItem: React.StatelessComponent<IListItemProps> = ({ order, id, isBeingEdited }): JSX.Element => (
+export const ListItem: React.StatelessComponent<ListItemProps> = ({ order, id, isBeingEdited }): JSX.Element => (
   isBeingEdited
     ? <EditListItem id={id} order={order} />
     : <DisplayListItem id={id} order={order} />
 );
 
 ListItem.displayName = 'ListItem';
-
 ListItem.propTypes = listItemPropTypes;

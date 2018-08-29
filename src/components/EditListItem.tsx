@@ -11,8 +11,7 @@ export interface IEditListItemDispatchProps {
   readonly cancel: () => void;
 }
 
-export interface IEditListItemContainerProps {
-  readonly id: string;
+export interface IEditListItemFilteredProps {
   readonly order: number;
 }
 
@@ -20,25 +19,24 @@ export interface IEditListItemStateProps {
   readonly text: string;
 }
 
-type IEditListItemProps = IEditListItemDispatchProps & IEditListItemStateProps & IEditListItemContainerProps;
+type EditListItemProps = IEditListItemDispatchProps & IEditListItemStateProps & IEditListItemFilteredProps;
 
 interface IEditListItemState {
   readonly inputText: string;
 }
 
-export class EditListItem extends PureComponent<IEditListItemProps, IEditListItemState> {
+export class EditListItem extends PureComponent<EditListItemProps, IEditListItemState> {
   static displayName: string = 'EditListItem';
 
-  static propTypes: ValidationMap<IEditListItemProps> = {
+  static propTypes: ValidationMap<EditListItemProps> = {
     order: PropTypes.number.isRequired,
-    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     save: PropTypes.func.isRequired,
     delete: PropTypes.func.isRequired,
     cancel: PropTypes.func.isRequired
   };
 
-  state = {
+  state: IEditListItemState = {
     inputText: this.props.text
   };
 
@@ -51,7 +49,7 @@ export class EditListItem extends PureComponent<IEditListItemProps, IEditListIte
 
   render(): JSX.Element {
     const isValid: boolean = isStringNonempty(this.state.inputText);
-    const title: any = isValid
+    const title: string | undefined = isValid
       ? undefined
       : 'Please enter text';
     const className = classNames('input-group', {

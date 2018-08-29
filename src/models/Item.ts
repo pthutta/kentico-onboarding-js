@@ -1,5 +1,10 @@
 import { Record } from 'immutable';
-import { IItem } from './IItem';
+
+export interface IItem {
+  readonly id: string;
+  readonly text: string;
+  readonly isBeingEdited: boolean;
+}
 
 const defaultValues: IItem = {
   id: '',

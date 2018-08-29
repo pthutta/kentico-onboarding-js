@@ -10,16 +10,16 @@ export interface IListStateProps {
   readonly itemIds: Array<string>;
 }
 
-type IListProps = IListStateProps;
+type ListProps = IListStateProps;
 
-const listPropTypes: ValidationMap<IListProps> = {
+const listPropTypes: ValidationMap<ListProps> = {
   itemIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
 };
 
-export const List: StatelessComponent<IListProps> = ({ itemIds }): JSX.Element => {
-  const items: JSX.Element[] = itemIds.map((itemId: string, i: number) => (
+export const List: StatelessComponent<ListProps> = ({ itemIds }): JSX.Element => {
+  const items: JSX.Element[] = itemIds.map((itemId: string, i: number) =>
     <ListItem key={itemId} order={i + 1} id={itemId} />
-  ));
+  );
 
   return (
     <div className="row">
@@ -44,5 +44,4 @@ export const List: StatelessComponent<IListProps> = ({ itemIds }): JSX.Element =
 };
 
 List.displayName = 'List';
-
 List.propTypes = listPropTypes;
