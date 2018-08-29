@@ -1,15 +1,15 @@
 import * as React from 'react';
 import { connect } from 'react-redux';
+import { Dispatch } from 'redux';
 import {
   deleteItem,
   saveItemText,
   toggleItemEditing
-} from '../actions/actionCreators';
+} from '../actions/itemsActions';
 import {
   EditListItem as EditListItemComponent,
   IEditListItemContainerProps, IEditListItemStateProps, IEditListItemDispatchProps
 } from '../components/EditListItem';
-import { Dispatch } from 'redux';
 import { IAppState } from '../models/IAppState';
 
 const mapStateToProps = (state: IAppState, ownProps: IEditListItemContainerProps): IEditListItemStateProps => ({

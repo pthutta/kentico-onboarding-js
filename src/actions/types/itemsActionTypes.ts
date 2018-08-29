@@ -1,4 +1,4 @@
-import { IAction } from '../models/IAction';
+import { IAction } from '../../models/IAction';
 
 export interface AddItemAction extends IAction<'ADD_ITEM', {id: string, text: string}> {}
 export interface SaveItemTextAction extends IAction<'SAVE_ITEM_TEXT', {id: string, text: string}> {}

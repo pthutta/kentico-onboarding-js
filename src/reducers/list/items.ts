@@ -1,9 +1,9 @@
+import { OrderedMap } from 'immutable';
 import { item } from './item';
-import { IItemsState } from '../models/IItemsState';
-import { Actions } from '../actions/actionTypes';
-import { Item } from '../models/Item';
+import { Actions } from '../../actions/types/itemsActionTypes';
+import { Item } from '../../models/Item';
 
-export const items = (state: IItemsState, action: Actions) => {
+export const items = (state = OrderedMap(), action: Actions) => {
   switch (action.type) {
     case 'ADD_ITEM': {
       const newItem = item(new Item(), action);

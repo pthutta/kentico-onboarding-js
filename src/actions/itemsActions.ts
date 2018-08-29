@@ -1,11 +1,11 @@
-import { addItemCreator } from './addItemCreator';
+import { addItemCreator } from './creators/addItemCreator';
 import { generateUuid } from '../utils/generateUuid';
 import {
   AddItemAction,
   DeleteItemAction,
   SaveItemTextAction,
   ToggleItemEditingAction
-} from './actionTypes';
+} from './types/itemsActionTypes';
 
 export const addItem: (text: string) => AddItemAction = addItemCreator(generateUuid);
 

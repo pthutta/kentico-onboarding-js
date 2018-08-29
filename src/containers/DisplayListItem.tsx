@@ -1,11 +1,11 @@
+import * as React from 'react';
 import { connect } from 'react-redux';
-import { toggleItemEditing } from '../actions/actionCreators';
+import { Dispatch } from 'redux';
+import { toggleItemEditing } from '../actions/itemsActions';
 import {
   DisplayListItem as DisplayListItemComponent,
   IDisplayListItemContainerProps, IDisplayListItemDispatchProps, IDisplayListItemStateProps
 } from '../components/DisplayListItem';
-import { Dispatch } from 'redux';
-import * as React from 'react';
 import { IAppState } from '../models/IAppState';
 
 const mapStateToProps = (state: IAppState, ownProps: IDisplayListItemContainerProps): IDisplayListItemStateProps => ({

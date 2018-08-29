@@ -1,6 +1,6 @@
-import { Item } from '../models/Item';
-import { Actions } from '../actions/actionTypes';
-import { IItem } from '../models/IItem';
+import { Item } from '../../models/Item';
+import { Actions } from '../../actions/types/itemsActionTypes';
+import { IItem } from '../../models/IItem';
 
 export const item = (state: Item, action: Actions): IItem => {
   switch (action.type) {
