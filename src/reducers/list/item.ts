@@ -2,7 +2,7 @@ import { Item } from '../../models/Item';
 import { Actions } from '../../actions/types/itemsActionTypes';
 import { IItem } from '../../models/IItem';
 
-export const item = (state: Item, action: Actions): IItem => {
+export const item = (state: IItem = new Item(), action: Actions): IItem => {
   switch (action.type) {
     case 'ADD_ITEM':
       return new Item({
@@ -11,13 +11,13 @@ export const item = (state: Item, action: Actions): IItem => {
       });
 
     case 'SAVE_ITEM_TEXT':
-      return state.with({
+      return (state as Item).with({
         text: action.payload.text,
         isBeingEdited: false
       });
 
     case 'TOGGLE_ITEM_EDITING':
-      return state.with({
+      return (state as Item).with({
         isBeingEdited: !state.isBeingEdited
       });
 

@@ -7,39 +7,24 @@ import {
   saveItemText,
   toggleItemEditing
 } from '../../actions/itemsActions';
+import { IItemsState } from '../../models/IItemsState';
 
 describe('items', () => {
   it('initializes state with OrderedMap', () => {
-    const previousState = undefined;
-    const expectedState = OrderedMap();
+    const previousState: IItemsState | undefined = undefined;
+    const expectedState: IItemsState = OrderedMap();
 
-    const result = items(previousState, {});
+    const result: IItemsState = items(previousState, deleteItem('1'));
 
     expect(result).toEqual(expectedState);
   });
 
-  it('returns previous state when it receives unknown action type', () => {
-    const previousState = OrderedMap([
-      [
-        '1',
-        new Item({
-          id: '1',
-          text: 'Learn redux'
-        })
-      ]
-    ]);
-
-    const result = items(previousState, { type: 'unknown', payload: {} });
-
-    expect(result).toEqual(previousState);
-  });
-
   describe('addItem', () => {
     it('returns state with correct text', () => {
-      const previousState = OrderedMap();
-      const text = 'Learn redux';
+      const previousState: IItemsState = OrderedMap();
+      const text: string = 'Learn redux';
       const idGenerator = () => '1';
-      const expectedState = OrderedMap([
+      const expectedState: IItemsState = OrderedMap([
         [
           idGenerator(),
           new Item({
@@ -49,7 +34,7 @@ describe('items', () => {
         ]
       ]);
 
-      const result = items(previousState, addItemCreator(idGenerator)(text));
+      const result: IItemsState = items(previousState, addItemCreator(idGenerator)(text));
 
       expect(result).toEqual(expectedState);
     });
@@ -57,7 +42,7 @@ describe('items', () => {
 
   describe('saveItemText', () => {
     it('returns state with changed item text', () => {
-      const previousState = OrderedMap([
+      const previousState: IItemsState = OrderedMap([
         [
           '1',
           new Item({
@@ -73,8 +58,8 @@ describe('items', () => {
           })
         ]
       ]);
-      const text = 'Learn redux';
-      const expectedState = OrderedMap([
+      const text: string = 'Learn redux';
+      const expectedState: IItemsState = OrderedMap([
         [
           '1',
           new Item({
@@ -91,7 +76,7 @@ describe('items', () => {
         ]
       ]);
 
-      const result = items(previousState, saveItemText('1', text));
+      const result: IItemsState = items(previousState, saveItemText('1', text));
 
       expect(result).toEqual(expectedState);
     });
@@ -99,7 +84,7 @@ describe('items', () => {
 
   describe('deleteItem', () => {
     it('returns state with deleted item', () => {
-      const previousState = OrderedMap([
+      const previousState: IItemsState = OrderedMap([
         [
           '1',
           new Item({
@@ -115,7 +100,7 @@ describe('items', () => {
           })
         ]
       ]);
-      const expectedState = OrderedMap([
+      const expectedState: IItemsState = OrderedMap([
         [
           '2',
           new Item({
@@ -125,7 +110,7 @@ describe('items', () => {
         ]
       ]);
 
-      const result = items(previousState, deleteItem('1'));
+      const result: IItemsState = items(previousState, deleteItem('1'));
 
       expect(result.has('1')).toBeFalsy();
       expect(result).toEqual(expectedState);
@@ -134,7 +119,7 @@ describe('items', () => {
 
   describe('toggleItemEditing', () => {
     it('returns state with toggled item\'s editing', () => {
-      const previousState = OrderedMap([
+      const previousState: IItemsState = OrderedMap([
         [
           '1',
           new Item({
@@ -150,7 +135,7 @@ describe('items', () => {
           })
         ]
       ]);
-      const expectedState = OrderedMap([
+      const expectedState: IItemsState = OrderedMap([
         [
           '1',
           new Item({
@@ -168,7 +153,7 @@ describe('items', () => {
         ]
       ]);
 
-      const result = items(previousState, toggleItemEditing('2'));
+      const result: IItemsState = items(previousState, toggleItemEditing('2'));
 
       expect(result).toEqual(expectedState);
     });

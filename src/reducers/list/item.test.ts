@@ -2,38 +2,33 @@ import { item } from './item';
 import { Item } from '../../models/Item';
 import { addItemCreator } from '../../actions/creators/addItemCreator';
 import {
+  deleteItem,
   saveItemText,
   toggleItemEditing
 } from '../../actions/itemsActions';
+import { IItem } from '../../models/IItem';
 
 describe('item', () => {
   it('initializes state with default Item Record value', () => {
-    const previousState = undefined;
-    const expectedState = new Item();
+    const previousState: IItem | undefined = undefined;
+    const expectedState: IItem = new Item();
 
-    const result = item(previousState, {});
+    const result: IItem = item(previousState, deleteItem('1'));
 
     expect(result).toEqual(expectedState);
   });
 
-  it('returns previous state when it receives unknown action type', () => {
-    const previousState = new Item();
-    const result = item(previousState, { type: 'unknown', payload: {} });
-
-    expect(result).toEqual(previousState);
-  });
-
   describe('addItem', () => {
     it('returns item with correct text', () => {
-      const previousState = null;
-      const text = 'Learn redux';
+      const previousState: IItem = new Item();
+      const text: string = 'Learn redux';
       const idGenerator = () => '1';
-      const expectedState = new Item({
+      const expectedState: IItem = new Item({
         id: idGenerator(),
         text
       });
 
-      const result = item(previousState, addItemCreator(idGenerator)(text));
+      const result: IItem = item(previousState, addItemCreator(idGenerator)(text));
 
       expect(result).toEqual(expectedState);
     });
@@ -41,17 +36,17 @@ describe('item', () => {
 
   describe('saveItemText', () => {
     it('returns item with saved text', () => {
-      const previousState = new Item({
+      const previousState: IItem = new Item({
         id: '1',
         text: 'Learn react'
       });
-      const text = 'Learn redux';
-      const expectedState = new Item({
+      const text: string = 'Learn redux';
+      const expectedState: IItem = new Item({
         id: '1',
         text
       });
 
-      const result = item(previousState, saveItemText(previousState.id, text));
+      const result: IItem = item(previousState, saveItemText(previousState.id, text));
 
       expect(result).toEqual(expectedState);
     });
@@ -59,13 +54,13 @@ describe('item', () => {
 
   describe('toggleItemEditing', () => {
     it('returns item with toggled isBeingEdited', () => {
-      const previousState = new Item({
+      const previousState: IItem = new Item({
         id: '1',
         text: 'Learn react'
       });
-      const expectedState = previousState.set('isBeingEdited', true);
+      const expectedState: IItem = (previousState as Item).with({ isBeingEdited: true });
 
-      const result = item(previousState, toggleItemEditing(previousState.id));
+      const result: IItem = item(previousState, toggleItemEditing(previousState.id));
 
       expect(result).toEqual(expectedState);
     });
