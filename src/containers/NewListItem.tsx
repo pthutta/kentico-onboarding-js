@@ -3,14 +3,14 @@ import { connect } from 'react-redux';
 import { addItem } from '../actions/itemsActions';
 import {
   INewListItemDispatchProps,
-  NewListItem as NewListItemComponent
+  NewListItem as NewListItemComponent,
 } from '../components/NewListItem';
 
 const mapDispatchToProps: INewListItemDispatchProps = {
-  addItem
+  addItem,
 };
 
 export const NewListItem: React.ComponentClass = connect(
   null,
-  mapDispatchToProps
+  mapDispatchToProps,
 )(NewListItemComponent);

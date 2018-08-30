@@ -1,7 +1,7 @@
 import {
   deleteItem,
   saveItemText,
-  toggleItemEditing
+  toggleItemEditing,
 } from './itemsActions';
 import { generateUuid } from '../utils/generateUuid';
 import { addItemCreator } from './creators/addItemCreator';
@@ -9,7 +9,7 @@ import {
   AddItemAction,
   DeleteItemAction,
   SaveItemTextAction,
-  ToggleItemEditingAction
+  ToggleItemEditingAction,
 } from './types/itemsActionTypes';
 
 describe('addItem', () => {
@@ -20,8 +20,8 @@ describe('addItem', () => {
       type: 'ADD_ITEM',
       payload: {
         text,
-        id: idGenerator()
-      }
+        id: idGenerator(),
+      },
     };
 
     const result: AddItemAction = addItemCreator(idGenerator)(text);
@@ -33,13 +33,13 @@ describe('addItem', () => {
 describe('saveItemText', () => {
   it('returns action with correct text and id', () => {
     const text: string = 'Learn redux';
-    const id: GUID = generateUuid();
+    const id: Guid = generateUuid();
     const expectedResult: SaveItemTextAction = {
       type: 'SAVE_ITEM_TEXT',
       payload: {
         id,
-        text
-      }
+        text,
+      },
     };
 
     const result: SaveItemTextAction = saveItemText(id, text);
@@ -50,12 +50,12 @@ describe('saveItemText', () => {
 
 describe('deleteItem', () => {
   it('returns action with correct id', () => {
-    const id: GUID = generateUuid();
+    const id: Guid = generateUuid();
     const expectedResult: DeleteItemAction = {
       type: 'DELETE_ITEM',
       payload: {
-        id
-      }
+        id,
+      },
     };
 
     const result: DeleteItemAction = deleteItem(id);
@@ -66,12 +66,12 @@ describe('deleteItem', () => {
 
 describe('toggleItemEditing', () => {
   it('returns action with correct id', () => {
-    const id: GUID = generateUuid();
+    const id: Guid = generateUuid();
     const expectedResult: ToggleItemEditingAction = {
       type: 'TOGGLE_ITEM_EDITING',
       payload: {
-        id
-      }
+        id,
+      },
     };
 
     const result: ToggleItemEditingAction = toggleItemEditing(id);

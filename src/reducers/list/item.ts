@@ -7,18 +7,18 @@ export const item = (state: IItem = new Item(), action: Actions): IItem => {
     case 'ADD_ITEM':
       return new Item({
         id: action.payload.id,
-        text: action.payload.text
+        text: action.payload.text,
       });
 
     case 'SAVE_ITEM_TEXT':
       return (state as Item).with({
         text: action.payload.text,
-        isBeingEdited: false
+        isBeingEdited: false,
       });
 
     case 'TOGGLE_ITEM_EDITING':
       return (state as Item).with({
-        isBeingEdited: !state.isBeingEdited
+        isBeingEdited: !state.isBeingEdited,
       });
 
     default:

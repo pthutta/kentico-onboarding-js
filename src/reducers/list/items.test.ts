@@ -29,9 +29,9 @@ describe('items', () => {
           idGenerator(),
           new Item({
             id: idGenerator(),
-            text
-          })
-        ]
+            text,
+          }),
+        ],
       ]);
 
       const result: IItemsState = items(previousState, addItemCreator(idGenerator)(text));
@@ -47,16 +47,16 @@ describe('items', () => {
           '1',
           new Item({
             id: '1',
-            text: 'Learn react'
-          })
+            text: 'Learn react',
+          }),
         ],
         [
           '2',
           new Item({
             id: '2',
-            text: 'Write app'
-          })
-        ]
+            text: 'Write app',
+          }),
+        ],
       ]);
       const text: string = 'Learn redux';
       const expectedState: IItemsState = OrderedMap([
@@ -64,16 +64,16 @@ describe('items', () => {
           '1',
           new Item({
             id: '1',
-            text
-          })
+            text,
+          }),
         ],
         [
           '2',
           new Item({
             id: '2',
-            text: 'Write app'
-          })
-        ]
+            text: 'Write app',
+          }),
+        ],
       ]);
 
       const result: IItemsState = items(previousState, saveItemText('1', text));
@@ -89,25 +89,25 @@ describe('items', () => {
           '1',
           new Item({
             id: '1',
-            text: 'Learn react'
-          })
+            text: 'Learn react',
+          }),
         ],
         [
           '2',
           new Item({
             id: '2',
-            text: 'Write app'
-          })
-        ]
+            text: 'Write app',
+          }),
+        ],
       ]);
       const expectedState: IItemsState = OrderedMap([
         [
           '2',
           new Item({
             id: '2',
-            text: 'Write app'
-          })
-        ]
+            text: 'Write app',
+          }),
+        ],
       ]);
 
       const result: IItemsState = items(previousState, deleteItem('1'));
@@ -124,33 +124,33 @@ describe('items', () => {
           '1',
           new Item({
             id: '1',
-            text: 'Learn react'
-          })
-        ],
-        [
-          '2',
-          new Item({
-            id: '2',
-            text: 'Write app'
-          })
-        ]
-      ]);
-      const expectedState: IItemsState = OrderedMap([
-        [
-          '1',
-          new Item({
-            id: '1',
-            text: 'Learn react'
-          })
+            text: 'Learn react',
+          }),
         ],
         [
           '2',
           new Item({
             id: '2',
             text: 'Write app',
-            isBeingEdited: true
-          })
-        ]
+          }),
+        ],
+      ]);
+      const expectedState: IItemsState = OrderedMap([
+        [
+          '1',
+          new Item({
+            id: '1',
+            text: 'Learn react',
+          }),
+        ],
+        [
+          '2',
+          new Item({
+            id: '2',
+            text: 'Write app',
+            isBeingEdited: true,
+          }),
+        ],
       ]);
 
       const result: IItemsState = items(previousState, toggleItemEditing('2'));

@@ -1,5 +1,5 @@
 export {};
 
 declare global {
-  type GUID = string;
+  type Guid = string;
 }

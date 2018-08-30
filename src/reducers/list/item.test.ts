@@ -4,7 +4,7 @@ import { addItemCreator } from '../../actions/creators/addItemCreator';
 import {
   deleteItem,
   saveItemText,
-  toggleItemEditing
+  toggleItemEditing,
 } from '../../actions/itemsActions';
 import { IItem } from '../../models/Item';
 
@@ -25,7 +25,7 @@ describe('item', () => {
       const idGenerator = () => '1';
       const expectedState: IItem = new Item({
         id: idGenerator(),
-        text
+        text,
       });
 
       const result: IItem = item(previousState, addItemCreator(idGenerator)(text));
@@ -38,12 +38,12 @@ describe('item', () => {
     it('returns item with saved text', () => {
       const previousState: IItem = new Item({
         id: '1',
-        text: 'Learn react'
+        text: 'Learn react',
       });
       const text: string = 'Learn redux';
       const expectedState: IItem = new Item({
         id: '1',
-        text
+        text,
       });
 
       const result: IItem = item(previousState, saveItemText(previousState.id, text));
@@ -56,7 +56,7 @@ describe('item', () => {
     it('returns item with toggled isBeingEdited', () => {
       const previousState: IItem = new Item({
         id: '1',
-        text: 'Learn react'
+        text: 'Learn react',
       });
       const expectedState: IItem = (previousState as Item).with({ isBeingEdited: true });
 

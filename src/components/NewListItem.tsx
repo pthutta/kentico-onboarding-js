@@ -19,11 +19,11 @@ export class NewListItem extends PureComponent<NewListItemProps, INewListItemSta
   static displayName: string = 'NewListItem';
 
   static propTypes: ValidationMap<NewListItemProps> = {
-    addItem: PropTypes.func.isRequired
+    addItem: PropTypes.func.isRequired,
   };
 
   state: INewListItemState = {
-    inputText: ''
+    inputText: '',
   };
 
   private _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -44,7 +44,7 @@ export class NewListItem extends PureComponent<NewListItemProps, INewListItemSta
       : 'Please enter text';
     const className: string = classNames('form-group', {
       'has-success': isValid,
-      'has-error': !isValid
+      'has-error': !isValid,
     });
 
     return (

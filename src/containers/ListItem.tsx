@@ -3,12 +3,12 @@ import { connect } from 'react-redux';
 import {
   IListItemContainerProps,
   IListItemStateProps,
-  ListItem as ListItemComponent
+  ListItem as ListItemComponent,
 } from '../components/ListItem';
 import { IAppState } from '../stores/IAppState';
 
 const mapStateToProps = (state: IAppState, ownProps: IListItemContainerProps): IListItemStateProps => ({
-  isBeingEdited: state.list.items.get(ownProps.id).isBeingEdited
+  isBeingEdited: state.list.items.get(ownProps.id).isBeingEdited,
 });
 
 export const ListItem: React.ComponentClass<IListItemContainerProps> = connect(mapStateToProps)(ListItemComponent);

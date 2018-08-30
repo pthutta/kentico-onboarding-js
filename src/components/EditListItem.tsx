@@ -33,11 +33,11 @@ export class EditListItem extends PureComponent<EditListItemProps, IEditListItem
     text: PropTypes.string.isRequired,
     save: PropTypes.func.isRequired,
     delete: PropTypes.func.isRequired,
-    cancel: PropTypes.func.isRequired
+    cancel: PropTypes.func.isRequired,
   };
 
   state: IEditListItemState = {
-    inputText: this.props.text
+    inputText: this.props.text,
   };
 
   private _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
@@ -54,7 +54,7 @@ export class EditListItem extends PureComponent<EditListItemProps, IEditListItem
       : 'Please enter text';
     const className = classNames('input-group', {
       'has-success': isValid,
-      'has-error': !isValid
+      'has-error': !isValid,
     });
 
     return (

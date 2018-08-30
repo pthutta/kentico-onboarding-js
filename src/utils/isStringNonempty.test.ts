@@ -12,24 +12,24 @@ describe('isStringNonempty', () => {
   [
     '        ',
     ' \t\r',
-    '\n   \t'
+    '\n   \t',
   ].forEach((input: string) =>
     it('returns false for string with whitespaces', () => {
       const result: boolean = isStringNonempty(input);
 
       expect(result).toBeFalsy();
-    })
+    }),
   );
 
   [
     '  John Doe ',
     'John Doe  ',
-    'Just John'
+    'Just John',
   ].forEach((input: string) =>
     it('returns true for nonempty string - ' + input, () => {
       const result: boolean = isStringNonempty(input);
 
       expect(result).toBeTruthy();
-    })
+    }),
   );
 });

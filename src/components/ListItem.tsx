@@ -5,7 +5,7 @@ import { EditListItem } from '../containers/EditListItem';
 import { DisplayListItem } from '../containers/DisplayListItem';
 
 export interface IListItemContainerProps {
-  readonly id: GUID;
+  readonly id: Guid;
   readonly order: number;
 }
 
@@ -18,7 +18,7 @@ type ListItemProps = IListItemStateProps & IListItemContainerProps;
 const listItemPropTypes: ValidationMap<ListItemProps> = {
   order: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
-  isBeingEdited: PropTypes.bool.isRequired
+  isBeingEdited: PropTypes.bool.isRequired,
 };
 
 export const ListItem: React.StatelessComponent<ListItemProps> = ({ order, id, isBeingEdited }): JSX.Element => (

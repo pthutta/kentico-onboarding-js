@@ -4,29 +4,29 @@ import {
   AddItemAction,
   DeleteItemAction,
   SaveItemTextAction,
-  ToggleItemEditingAction
+  ToggleItemEditingAction,
 } from './types/itemsActionTypes';
 
 export const addItem: (text: string) => AddItemAction = addItemCreator(generateUuid);
 
-export const saveItemText = (id: GUID, text: string): SaveItemTextAction => ({
+export const saveItemText = (id: Guid, text: string): SaveItemTextAction => ({
   type: 'SAVE_ITEM_TEXT',
   payload: {
     id,
-    text
-  }
+    text,
+  },
 });
 
-export const deleteItem = (id: GUID): DeleteItemAction => ({
+export const deleteItem = (id: Guid): DeleteItemAction => ({
   type: 'DELETE_ITEM',
   payload: {
-    id
-  }
+    id,
+  },
 });
 
-export const toggleItemEditing = (id: GUID): ToggleItemEditingAction => ({
+export const toggleItemEditing = (id: Guid): ToggleItemEditingAction => ({
   type: 'TOGGLE_ITEM_EDITING',
   payload: {
-    id
-  }
+    id,
+  },
 });

@@ -7,5 +7,5 @@ import { initialState } from './initialState';
 export const appStore: Store = createStore(
   todoApp,
   initialState,
-  composeWithDevTools(applyMiddleware(logger))
+  composeWithDevTools(applyMiddleware(logger)),
 );

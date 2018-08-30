@@ -5,21 +5,21 @@ import { toggleItemEditing } from '../actions/itemsActions';
 import {
   DisplayListItem as DisplayListItemComponent,
   IDisplayListItemDispatchProps,
-  IDisplayListItemStateProps
+  IDisplayListItemStateProps,
 } from '../components/DisplayListItem';
 import { IAppState } from '../stores/IAppState';
 
 export interface IDisplayListItemContainerProps {
-  readonly id: GUID;
+  readonly id: Guid;
   readonly order: number;
 }
 
 const mapStateToProps = (state: IAppState, ownProps: IDisplayListItemContainerProps): IDisplayListItemStateProps => ({
-  text: state.list.items.get(ownProps.id).text
+  text: state.list.items.get(ownProps.id).text,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: IDisplayListItemContainerProps): IDisplayListItemDispatchProps => ({
-  enableEditing: () => dispatch(toggleItemEditing(ownProps.id))
+  enableEditing: () => dispatch(toggleItemEditing(ownProps.id)),
 });
 
 const mergeProps = (stateProps: IDisplayListItemStateProps, dispatchProps: IDisplayListItemDispatchProps, ownProps: IDisplayListItemContainerProps) => {
@@ -28,7 +28,7 @@ const mergeProps = (stateProps: IDisplayListItemStateProps, dispatchProps: IDisp
   return {
     ...stateProps,
     ...dispatchProps,
-    order
+    order,
   };
 };
 

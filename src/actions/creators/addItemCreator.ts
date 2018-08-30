@@ -1,9 +1,9 @@
 import { AddItemAction } from '../types/itemsActionTypes';
 
-export const addItemCreator = (idGenerator: () => GUID) => (text: string): AddItemAction => ({
+export const addItemCreator = (idGenerator: () => Guid) => (text: string): AddItemAction => ({
   type: 'ADD_ITEM',
   payload: {
     text,
-    id: idGenerator()
-  }
+    id: idGenerator(),
+  },
 });

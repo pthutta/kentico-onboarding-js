@@ -19,7 +19,7 @@ type DisplayListItemProps = IDisplayListItemDispatchProps & IDisplayListItemStat
 const displayListItemPropTypes: ValidationMap<DisplayListItemProps> = {
   order: PropTypes.number.isRequired,
   text: PropTypes.string.isRequired,
-  enableEditing: PropTypes.func.isRequired
+  enableEditing: PropTypes.func.isRequired,
 };
 
 export const DisplayListItem: React.StatelessComponent<DisplayListItemProps> = ({ order, text, enableEditing }): JSX.Element => (

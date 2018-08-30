@@ -7,18 +7,18 @@ import { ListItem } from '../containers/ListItem';
 import { NewListItem } from '../containers/NewListItem';
 
 export interface IListStateProps {
-  readonly itemIds: Array<GUID>;
+  readonly itemIds: Array<Guid>;
 }
 
 type ListProps = IListStateProps;
 
 const listPropTypes: ValidationMap<ListProps> = {
-  itemIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired
+  itemIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
 };
 
 export const List: StatelessComponent<ListProps> = ({ itemIds }): JSX.Element => {
-  const items: JSX.Element[] = itemIds.map((itemId: GUID, i: number) =>
-    <ListItem key={itemId} order={i + 1} id={itemId} />
+  const items: JSX.Element[] = itemIds.map((itemId: Guid, i: number) =>
+    <ListItem key={itemId} order={i + 1} id={itemId} />,
   );
 
   return (
