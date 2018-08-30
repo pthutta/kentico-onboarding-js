@@ -26,7 +26,7 @@ const displayListItemPropTypes: ValidationMap<DisplayListItemProps> = {
 
 export const DisplayListItem: React.StatelessComponent<DisplayListItemProps> = ({ order, text, enableEditing }): JSX.Element => (
   <li className="list-group-item">
-    <form className="form-inline" >
+    <form className="form-inline" tabIndex={order}>
       <div onClick={enableEditing}>
         <div className="form-group">
           {order}. {text}

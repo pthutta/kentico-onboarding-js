@@ -36,6 +36,12 @@ export class NewListItem extends PureComponent<NewListItemProps, NewListItemStat
     this.setState(() => ({ inputText: '' }));
   };
 
+  private _onKeyPress = (event: React.KeyboardEvent<HTMLFormElement>): void => {
+    if (event.key === 'Enter') {
+      event.preventDefault();
+    }
+  };
+
   render(): JSX.Element {
     const { inputText } = this.state;
     const isValid: boolean = isStringNonempty(inputText);
@@ -48,7 +54,7 @@ export class NewListItem extends PureComponent<NewListItemProps, NewListItemStat
     });
 
     return (
-      <form className="form-inline">
+      <form className="form-inline" onKeyPress={this._onKeyPress}>
         <div className={className}>
           <input
             type="text"
