@@ -6,7 +6,7 @@ import { HotKeys, KeyMap } from 'react-hotkeys';
 const map: KeyMap = {
   'confirm': 'enter',
   'cancelEditing': 'escape',
-  'deleteItem': 'command+d',
+  'deleteItem': 'ctrl+del',
 };
 
 export const App: React.StatelessComponent = (): JSX.Element => (

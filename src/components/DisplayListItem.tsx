@@ -1,6 +1,7 @@
 import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
+import { HotKeys } from 'react-hotkeys';
 
 export type DisplayListItemContainerProps = {
   readonly id: Guid,
@@ -26,13 +27,15 @@ const displayListItemPropTypes: ValidationMap<DisplayListItemProps> = {
 
 export const DisplayListItem: React.StatelessComponent<DisplayListItemProps> = ({ order, text, enableEditing }): JSX.Element => (
   <li className="list-group-item">
-    <form className="form-inline" tabIndex={order}>
-      <div onClick={enableEditing}>
-        <div className="form-group">
-          {order}. {text}
+    <HotKeys handlers={{'confirm': enableEditing}}>
+      <form className="form-inline" tabIndex={order}>
+        <div onClick={enableEditing}>
+          <div className="form-group">
+            {order}. {text}
+          </div>
         </div>
-      </div>
-    </form>
+      </form>
+    </HotKeys>
   </li>
 );
 
