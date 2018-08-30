@@ -4,6 +4,7 @@ import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
+import { HotKeys } from 'react-hotkeys';
 
 export type NewListItemDispatchProps = {
   readonly addItem: (text: string) => void,
@@ -32,8 +33,11 @@ export class NewListItem extends PureComponent<NewListItemProps, NewListItemStat
   };
 
   private _addNewItem = (): void => {
-    this.props.addItem(this.state.inputText);
-    this.setState(() => ({ inputText: '' }));
+    const { inputText } = this.state;
+    if (isStringNonempty(inputText)) {
+      this.props.addItem(inputText);
+      this.setState(() => ({ inputText: '' }));
+    }
   };
 
   private _onKeyPress = (event: React.KeyboardEvent<HTMLFormElement>): void => {
@@ -52,28 +56,31 @@ export class NewListItem extends PureComponent<NewListItemProps, NewListItemStat
       'has-success': isValid,
       'has-error': !isValid,
     });
+    const handlers = { 'confirm': this._addNewItem };
 
     return (
-      <form className="form-inline" onKeyPress={this._onKeyPress}>
-        <div className={className}>
-          <input
-            type="text"
-            className="form-control"
-            value={inputText}
-            placeholder="New item"
-            onChange={this._storeInputValue}
-          />
-          <button
-            type="button"
-            className="btn btn-default"
-            onClick={this._addNewItem}
-            disabled={!isValid}
-            title={title}
-          >
-            Add
-          </button>
-        </div>
-      </form>
+      <HotKeys handlers={handlers}>
+        <form className="form-inline" onKeyPress={this._onKeyPress}>
+          <div className={className}>
+            <input
+              type="text"
+              className="form-control"
+              value={inputText}
+              placeholder="New item"
+              onChange={this._storeInputValue}
+            />
+            <button
+              type="button"
+              className="btn btn-default"
+              onClick={this._addNewItem}
+              disabled={!isValid}
+              title={title}
+            >
+              Add
+            </button>
+          </div>
+        </form>
+      </HotKeys>
     );
   }
 }

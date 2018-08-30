@@ -4,6 +4,7 @@ import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
+import { HotKeys } from 'react-hotkeys';
 
 export type EditListItemContainerProps = {
   readonly id: Guid,
@@ -64,11 +65,21 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
       'has-success': isValid,
       'has-error': !isValid,
     });
+    let handlers: { [key: string]: (keyEvent?: KeyboardEvent) => void } = {
+      'cancelEditing': this.props.cancel,
+      'deleteItem': this.props.delete,
+    };
+    if (isValid) {
+      handlers = {
+        ...handlers,
+        'confirm': this._saveNewItemText,
+      };
+    }
 
     return (
       <li className="list-group-item">
-        <form className="form-inline" onKeyPress={this._onKeyPress}>
-          <div>
+        <HotKeys handlers={handlers}>
+          <form className="form-inline" onKeyPress={this._onKeyPress}>
             <div className="form-group">
               <label>{this.props.order}. </label>
               <div className={className}>
@@ -76,6 +87,7 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
                   className="form-control"
                   value={this.state.inputText}
                   onChange={this._storeInputValue}
+                  tabIndex={this.props.order}
                 />
                 <div className="input-group-btn">
                   <button
@@ -84,6 +96,7 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
                     onClick={this._saveNewItemText}
                     disabled={!isValid}
                     title={title}
+                    tabIndex={-1}
                   >
                     Save
                   </button>
@@ -91,6 +104,7 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
                     type="button"
                     className="btn btn-default"
                     onClick={this.props.cancel}
+                    tabIndex={-1}
                   >
                     Cancel
                   </button>
@@ -98,14 +112,15 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
                     type="button"
                     className="btn btn-danger"
                     onClick={this.props.delete}
+                    tabIndex={-1}
                   >
                     Delete
                   </button>
                 </div>
               </div>
             </div>
-          </div>
-        </form>
+          </form>
+        </HotKeys>
       </li>
     );
   }

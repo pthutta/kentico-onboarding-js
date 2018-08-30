@@ -10,6 +10,9 @@ body {
   margin-bottom: 60px !important;
 }
 
+div[tabindex="-1"]:focus {
+  outline: 0;
+}
 
 .footer {
   position: absolute;
