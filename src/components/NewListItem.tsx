@@ -26,12 +26,12 @@ export class NewListItem extends PureComponent<NewListItemProps, INewListItemSta
     inputText: ''
   };
 
-  _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  private _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value: string = event.currentTarget.value;
     this.setState(() => ({ inputText: value }));
   };
 
-  _addNewItem = (): void => {
+  private _addNewItem = (): void => {
     this.props.addItem(this.state.inputText);
     this.setState(() => ({ inputText: '' }));
   };

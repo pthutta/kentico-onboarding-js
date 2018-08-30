@@ -40,12 +40,12 @@ export class EditListItem extends PureComponent<EditListItemProps, IEditListItem
     inputText: this.props.text
   };
 
-  _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
+  private _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value: string = event.target.value;
     this.setState(() => ({ inputText: value }));
   };
 
-  _saveNewItemText = () => this.props.save(this.state.inputText);
+  private _saveNewItemText = () => this.props.save(this.state.inputText);
 
   render(): JSX.Element {
     const isValid: boolean = isStringNonempty(this.state.inputText);
