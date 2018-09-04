@@ -1,4 +1,4 @@
-import { Record } from 'immutable';
+import { ModelBase } from './ModelBase';
 
 export interface IItem {
   readonly id: Guid;
@@ -12,17 +12,9 @@ const defaultValues: IItem = {
   isBeingEdited: false,
 };
 
-export class Item extends Record(defaultValues, 'Item') implements IItem {
+export class Item extends ModelBase(defaultValues, 'Item') implements IItem {
   readonly id: Guid;
   readonly isBeingEdited: boolean;
   readonly text: string;
-
-  constructor(values?: Partial<IItem>) {
-    values ? super(values) : super();
-  }
-
-  with(values: Partial<IItem>): this {
-    return this.merge(values) as this;
-  }
 }
 
