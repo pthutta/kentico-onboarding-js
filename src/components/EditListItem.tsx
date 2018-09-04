@@ -88,6 +88,7 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
                   value={this.state.inputText}
                   onChange={this._storeInputValue}
                   tabIndex={this.props.order}
+                  autoFocus={true}
                 />
                 <div className="input-group-btn">
                   <button

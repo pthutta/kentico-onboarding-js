@@ -68,6 +68,7 @@ export class NewListItem extends PureComponent<NewListItemProps, NewListItemStat
               value={inputText}
               placeholder="New item"
               onChange={this._storeInputValue}
+              autoFocus={true}
             />
             <button
               type="button"
