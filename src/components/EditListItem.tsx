@@ -5,21 +5,22 @@ import { ValidationMap } from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
 
+export interface IEditListItemContainerProps {
+  readonly id: Guid;
+  readonly order: number;
+}
+
 export interface IEditListItemDispatchProps {
   readonly save: (text: string) => void;
   readonly delete: () => void;
   readonly cancel: () => void;
 }
 
-export interface IEditListItemFilteredProps {
-  readonly order: number;
-}
-
 export interface IEditListItemStateProps {
   readonly text: string;
 }
 
-type EditListItemProps = IEditListItemDispatchProps & IEditListItemStateProps & IEditListItemFilteredProps;
+type EditListItemProps = IEditListItemDispatchProps & IEditListItemStateProps & IEditListItemContainerProps;
 
 interface IEditListItemState {
   readonly inputText: string;
@@ -30,6 +31,7 @@ export class EditListItem extends PureComponent<EditListItemProps, IEditListItem
 
   static propTypes: ValidationMap<EditListItemProps> = {
     order: PropTypes.number.isRequired,
+    id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     save: PropTypes.func.isRequired,
     delete: PropTypes.func.isRequired,
