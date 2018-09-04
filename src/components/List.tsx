@@ -2,7 +2,6 @@ import * as React from 'react';
 import { StatelessComponent } from 'react';
 import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
-import { TsComponent } from './TsComponent';
 import { ListItem } from '../containers/ListItem';
 import { NewListItem } from '../containers/NewListItem';
 
@@ -17,18 +16,12 @@ const listPropTypes: ValidationMap<ListProps> = {
 };
 
 export const List: StatelessComponent<ListProps> = ({ itemIds }): JSX.Element => {
-  const items: JSX.Element[] = itemIds.map((itemId: Guid, i: number) =>
-    <ListItem key={itemId} order={i + 1} id={itemId} />,
+  const items: JSX.Element[] = itemIds.map((itemId: Guid, index: number) =>
+    <ListItem key={itemId} order={index + 1} id={itemId} />,
   );
 
   return (
     <div className="row">
-      <div className="row">
-        <div className="col-sm-12 text-center">
-          <TsComponent name="𝕱𝖆𝖓𝖈𝖞" invisible={true} />
-        </div>
-      </div>
-
       <div className="row">
         <div className="col-sm-12 col-md-offset-2 col-md-8">
         <pre>

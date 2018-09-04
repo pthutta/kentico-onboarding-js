@@ -2,7 +2,7 @@ import { OrderedMap } from 'immutable';
 import { item } from './item';
 import { Actions } from '../../actions/types/itemsActionTypes';
 import { Item } from '../../models/Item';
-import { IItemsState } from '../../stores/IItemsState';
+import { IItemsState } from '../../store/state/IItemsState';
 
 export const items = (state: IItemsState = OrderedMap(), action: Actions): IItemsState => {
   switch (action.type) {

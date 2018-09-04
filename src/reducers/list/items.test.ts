@@ -7,7 +7,7 @@ import {
   saveItemText,
   toggleItemEditing
 } from '../../actions/itemsActions';
-import { IItemsState } from '../../stores/IItemsState';
+import { IItemsState } from '../../store/state/IItemsState';
 
 describe('items', () => {
   it('initializes state with OrderedMap', () => {

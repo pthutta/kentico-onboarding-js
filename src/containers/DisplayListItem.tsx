@@ -7,7 +7,7 @@ import {
   IDisplayListItemDispatchProps,
   IDisplayListItemStateProps,
 } from '../components/DisplayListItem';
-import { IAppState } from '../stores/IAppState';
+import { IAppState } from '../store/state/IAppState';
 
 export interface IDisplayListItemContainerProps {
   readonly id: Guid;
