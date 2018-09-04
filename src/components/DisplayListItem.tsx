@@ -2,20 +2,20 @@ import * as React from 'react';
 import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
 
-export interface IDisplayListItemContainerProps {
-  readonly id: Guid;
-  readonly order: number;
-}
+export type DisplayListItemContainerProps = {
+  readonly id: Guid,
+  readonly order: number,
+};
 
-export interface IDisplayListItemDispatchProps {
-  readonly enableEditing: () => void;
-}
+export type DisplayListItemDispatchProps = {
+  readonly enableEditing: () => void,
+};
 
-export interface IDisplayListItemStateProps {
-  readonly text: string;
-}
+export type DisplayListItemStateProps = {
+  readonly text: string,
+};
 
-type DisplayListItemProps = IDisplayListItemDispatchProps & IDisplayListItemStateProps & IDisplayListItemContainerProps;
+type DisplayListItemProps = DisplayListItemDispatchProps & DisplayListItemStateProps & DisplayListItemContainerProps;
 
 const displayListItemPropTypes: ValidationMap<DisplayListItemProps> = {
   order: PropTypes.number.isRequired,

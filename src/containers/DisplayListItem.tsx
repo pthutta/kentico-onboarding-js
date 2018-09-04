@@ -4,21 +4,21 @@ import { Dispatch } from 'redux';
 import { toggleItemEditing } from '../actions/itemsActions';
 import {
   DisplayListItem as DisplayListItemComponent,
-  IDisplayListItemContainerProps,
-  IDisplayListItemDispatchProps,
-  IDisplayListItemStateProps,
+  DisplayListItemContainerProps,
+  DisplayListItemDispatchProps,
+  DisplayListItemStateProps,
 } from '../components/DisplayListItem';
 import { IAppState } from '../store/state/IAppState';
 
-const mapStateToProps = (state: IAppState, ownProps: IDisplayListItemContainerProps): IDisplayListItemStateProps => ({
+const mapStateToProps = (state: IAppState, ownProps: DisplayListItemContainerProps): DisplayListItemStateProps => ({
   text: state.list.items.get(ownProps.id).text,
 });
 
-const mapDispatchToProps = (dispatch: Dispatch, ownProps: IDisplayListItemContainerProps): IDisplayListItemDispatchProps => ({
+const mapDispatchToProps = (dispatch: Dispatch, ownProps: DisplayListItemContainerProps): DisplayListItemDispatchProps => ({
   enableEditing: () => dispatch(toggleItemEditing(ownProps.id)),
 });
 
-export const DisplayListItem: React.ComponentClass<IDisplayListItemContainerProps> = connect(
+export const DisplayListItem: React.ComponentClass<DisplayListItemContainerProps> = connect(
   mapStateToProps,
   mapDispatchToProps,
 )(DisplayListItemComponent);

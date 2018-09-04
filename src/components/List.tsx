@@ -5,11 +5,11 @@ import { ValidationMap } from 'prop-types';
 import { ListItem } from '../containers/ListItem';
 import { NewListItem } from '../containers/NewListItem';
 
-export interface IListStateProps {
-  readonly itemIds: Array<Guid>;
-}
+export type ListStateProps = {
+  readonly itemIds: Array<Guid>,
+};
 
-type ListProps = IListStateProps;
+type ListProps = ListStateProps;
 
 const listPropTypes: ValidationMap<ListProps> = {
   itemIds: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,

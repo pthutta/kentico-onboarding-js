@@ -2,11 +2,11 @@ import * as React from 'react';
 import { connect } from 'react-redux';
 import { addItem } from '../actions/itemsActions';
 import {
-  INewListItemDispatchProps,
+  NewListItemDispatchProps,
   NewListItem as NewListItemComponent,
 } from '../components/NewListItem';
 
-const mapDispatchToProps: INewListItemDispatchProps = {
+const mapDispatchToProps: NewListItemDispatchProps = {
   addItem,
 };
 

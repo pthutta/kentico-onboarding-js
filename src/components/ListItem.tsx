@@ -4,16 +4,16 @@ import { ValidationMap } from 'prop-types';
 import { EditListItem } from '../containers/EditListItem';
 import { DisplayListItem } from '../containers/DisplayListItem';
 
-export interface IListItemContainerProps {
-  readonly id: Guid;
-  readonly order: number;
-}
+export type ListItemContainerProps = {
+  readonly id: Guid,
+  readonly order: number,
+};
 
-export interface IListItemStateProps {
-  readonly isBeingEdited: boolean;
-}
+export type ListItemStateProps = {
+  readonly isBeingEdited: boolean,
+};
 
-type ListItemProps = IListItemStateProps & IListItemContainerProps;
+type ListItemProps = ListItemStateProps & ListItemContainerProps;
 
 const listItemPropTypes: ValidationMap<ListItemProps> = {
   order: PropTypes.number.isRequired,

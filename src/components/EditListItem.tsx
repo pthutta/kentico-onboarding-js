@@ -5,28 +5,28 @@ import { ValidationMap } from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
 
-export interface IEditListItemContainerProps {
-  readonly id: Guid;
-  readonly order: number;
-}
+export type EditListItemContainerProps = {
+  readonly id: Guid,
+  readonly order: number,
+};
 
-export interface IEditListItemDispatchProps {
-  readonly save: (text: string) => void;
-  readonly delete: () => void;
-  readonly cancel: () => void;
-}
+export type EditListItemDispatchProps = {
+  readonly save: (text: string) => void,
+  readonly delete: () => void,
+  readonly cancel: () => void,
+};
 
-export interface IEditListItemStateProps {
-  readonly text: string;
-}
+export type EditListItemStateProps = {
+  readonly text: string,
+};
 
-type EditListItemProps = IEditListItemDispatchProps & IEditListItemStateProps & IEditListItemContainerProps;
+type EditListItemProps = EditListItemDispatchProps & EditListItemStateProps & EditListItemContainerProps;
 
-interface IEditListItemState {
-  readonly inputText: string;
-}
+type EditListItemState = {
+  readonly inputText: string,
+};
 
-export class EditListItem extends PureComponent<EditListItemProps, IEditListItemState> {
+export class EditListItem extends PureComponent<EditListItemProps, EditListItemState> {
   static displayName: string = 'EditListItem';
 
   static propTypes: ValidationMap<EditListItemProps> = {
@@ -38,7 +38,7 @@ export class EditListItem extends PureComponent<EditListItemProps, IEditListItem
     cancel: PropTypes.func.isRequired,
   };
 
-  state: IEditListItemState = {
+  state: EditListItemState = {
     inputText: this.props.text,
   };
 

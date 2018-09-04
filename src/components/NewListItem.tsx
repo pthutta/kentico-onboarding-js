@@ -5,24 +5,24 @@ import { ValidationMap } from 'prop-types';
 import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
 
-export interface INewListItemDispatchProps {
-  readonly addItem: (text: string) => void;
-}
+export type NewListItemDispatchProps = {
+  readonly addItem: (text: string) => void,
+};
 
-type NewListItemProps = INewListItemDispatchProps;
+type NewListItemProps = NewListItemDispatchProps;
 
-interface INewListItemState {
-  readonly inputText: string;
-}
+type NewListItemState = {
+  readonly inputText: string,
+};
 
-export class NewListItem extends PureComponent<NewListItemProps, INewListItemState> {
+export class NewListItem extends PureComponent<NewListItemProps, NewListItemState> {
   static displayName: string = 'NewListItem';
 
   static propTypes: ValidationMap<NewListItemProps> = {
     addItem: PropTypes.func.isRequired,
   };
 
-  state: INewListItemState = {
+  state: NewListItemState = {
     inputText: '',
   };
 
