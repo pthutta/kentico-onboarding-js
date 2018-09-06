@@ -1,4 +1,4 @@
 import { OrderedMap } from 'immutable';
-import { IItem } from '../../models/Item';
+import { Item } from '../../models/Item';
 
-export type IItemsState = OrderedMap<Guid, IItem>;
+export type IItemsState = OrderedMap<Guid, Item>;
