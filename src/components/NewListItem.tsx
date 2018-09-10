@@ -56,10 +56,9 @@ export class NewListItem extends PureComponent<NewListItemProps, NewListItemStat
       'has-success': isValid,
       'has-error': !isValid,
     });
-    const handlers = { 'confirm': this._addNewItem };
 
     return (
-      <HotKeys handlers={handlers}>
+      <HotKeys handlers={{ 'confirm': this._addNewItem }}>
         <form className="form-inline" onKeyPress={this._onKeyPress}>
           <div className={className}>
             <input
