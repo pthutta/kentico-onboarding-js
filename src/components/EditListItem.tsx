@@ -48,7 +48,12 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
     this.setState(() => ({ inputText: value }));
   };
 
-  private _saveNewItemText = () => this.props.save(this.state.inputText);
+  private _saveNewItemText = () => {
+    const { inputText } = this.state;
+    if (isStringNonempty(inputText)) {
+      this.props.save(inputText);
+    }
+  };
 
   private _onKeyPress = (event: React.KeyboardEvent<HTMLFormElement>): void => {
     if (event.key === 'Enter') {
@@ -61,20 +66,15 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
     const title: string | undefined = isValid
       ? undefined
       : 'Please enter text';
-    const className = classNames('input-group', {
+    const className: string = classNames('input-group', {
       'has-success': isValid,
       'has-error': !isValid,
     });
-    let handlers: { [key: string]: (keyEvent?: KeyboardEvent) => void } = {
+    const handlers = {
       'cancelEditing': this.props.cancel,
       'deleteItem': this.props.delete,
+      'confirm': this._saveNewItemText,
     };
-    if (isValid) {
-      handlers = {
-        ...handlers,
-        'confirm': this._saveNewItemText,
-      };
-    }
 
     return (
       <li className="list-group-item">
