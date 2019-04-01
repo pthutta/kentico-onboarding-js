@@ -10,7 +10,7 @@ export type ListItemContainerProps = {
 };
 
 export type ListItemStateProps = {
-  readonly isBeingEdited: boolean,
+  readonly showEditForm: boolean,
 };
 
 type ListItemProps = ListItemStateProps & ListItemContainerProps;
@@ -18,14 +18,22 @@ type ListItemProps = ListItemStateProps & ListItemContainerProps;
 const listItemPropTypes: ValidationMap<ListItemProps> = {
   order: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
-  isBeingEdited: PropTypes.bool.isRequired,
+  showEditForm: PropTypes.bool.isRequired,
 };
 
-export const ListItem: React.StatelessComponent<ListItemProps> = ({ order, id, isBeingEdited }): JSX.Element => (
-  isBeingEdited
-    ? <EditListItem id={id} order={order} />
-    : <DisplayListItem id={id} order={order} />
-);
+export const ListItem: React.FunctionComponent<ListItemProps> = ({ order, id, showEditForm}) => {
+  const item =
+    showEditForm
+    ? <EditListItem id={id} />
+    : <DisplayListItem id={id} />;
+
+  return (
+    <li className="list-group-item inline flexbox">
+      <div>{order}. </div>
+      {item}
+    </li>
+  );
+};
 
 ListItem.displayName = 'ListItem';
 ListItem.propTypes = listItemPropTypes;

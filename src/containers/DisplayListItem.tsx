@@ -12,6 +12,8 @@ import { IAppState } from '../store/state/IAppState';
 
 const mapStateToProps = (state: IAppState, ownProps: DisplayListItemContainerProps): DisplayListItemStateProps => ({
   text: state.list.items.get(ownProps.id).text,
+  showLoader: !state.list.items.get(ownProps.id).errorId && state.list.items.get(ownProps.id).isSyncing,
+  isSyncing: state.list.items.get(ownProps.id).isSyncing,
 });
 
 const mapDispatchToProps = (dispatch: Dispatch, ownProps: DisplayListItemContainerProps): DisplayListItemDispatchProps => ({

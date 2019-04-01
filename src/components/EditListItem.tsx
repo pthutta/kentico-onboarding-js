@@ -2,12 +2,12 @@ import * as React from 'react';
 import { PureComponent } from 'react';
 import * as PropTypes from 'prop-types';
 import { ValidationMap } from 'prop-types';
-import classNames from 'classnames';
 import { isStringNonempty } from '../utils/isStringNonempty';
+import { HotKeys } from 'react-hotkeys';
+import { HotkeyHandler } from './Hotkeys/appKeyMap';
 
 export type EditListItemContainerProps = {
   readonly id: Guid,
-  readonly order: number,
 };
 
 export type EditListItemDispatchProps = {
@@ -24,13 +24,13 @@ type EditListItemProps = EditListItemDispatchProps & EditListItemStateProps & Ed
 
 type EditListItemState = {
   readonly inputText: string,
+  readonly isInputChanged: boolean,
 };
 
 export class EditListItem extends PureComponent<EditListItemProps, EditListItemState> {
   static displayName: string = 'EditListItem';
 
   static propTypes: ValidationMap<EditListItemProps> = {
-    order: PropTypes.number.isRequired,
     id: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired,
     save: PropTypes.func.isRequired,
@@ -40,69 +40,79 @@ export class EditListItem extends PureComponent<EditListItemProps, EditListItemS
 
   state: EditListItemState = {
     inputText: this.props.text,
+    isInputChanged: false,
   };
 
   private _storeInputValue = (event: React.ChangeEvent<HTMLInputElement>): void => {
     const value: string = event.target.value;
-    this.setState(() => ({ inputText: value }));
+    this.setState(() => ({
+      inputText: value,
+      isInputChanged: true,
+    }));
   };
 
-  private _saveNewItemText = () => this.props.save(this.state.inputText);
+  private _saveNewItemText = () => {
+    const { inputText } = this.state;
+    if (isStringNonempty(inputText)) {
+      this.props.save(inputText);
+    }
+  };
 
   render(): JSX.Element {
-    const isValid: boolean = isStringNonempty(this.state.inputText);
-    const title: string | undefined = isValid
-      ? undefined
-      : 'Please enter text';
-    const className = classNames('input-group', {
-      'has-success': isValid,
-      'has-error': !isValid,
-    });
+    const { isInputChanged } = this.state;
+    const isValid = isStringNonempty(this.state.inputText);
+    const inputClassName = isValid ? 'has-success' : 'has-error';
+    const handlers: HotkeyHandler = {
+      cancelEditing: this.props.cancel,
+      deleteItem: this.props.delete,
+      confirm: this._saveNewItemText,
+    };
 
     return (
-      <li className="list-group-item">
-        <form className="form-inline" >
-          <div>
-            <div className="form-group">
-              <label>{this.props.order}. </label>
-              <div
-                className={className}
-              >
+      <HotKeys handlers={handlers}>
+        <div className="flexbox">
+          <div className={`input-group stretch ${isInputChanged ? inputClassName : ''}`}>
+            <div className="stretch">
               <input
+                type="text"
                 className="form-control"
                 value={this.state.inputText}
                 onChange={this._storeInputValue}
+                tabIndex={0}
+                autoFocus={true}
               />
-              <div className="input-group-btn">
-                <button
-                  type="button"
-                  className="btn btn-primary"
-                  onClick={this._saveNewItemText}
-                  disabled={!isValid}
-                  title={title}
-                >
-                  Save
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-default"
-                  onClick={this.props.cancel}
-                >
-                  Cancel
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-danger"
-                  onClick={this.props.delete}
-                >
-                  Delete
-                </button>
-              </div>
-              </div>
+            </div>
+            <div className="input-group-btn normal">
+              <button
+                type="button"
+                className="btn btn-primary"
+                onClick={this._saveNewItemText}
+                disabled={!isValid}
+                title={isValid ? undefined : 'Please enter text'}
+                tabIndex={-1}
+              >
+                Save
+              </button>
+              <button
+                type="button"
+                className="btn btn-default"
+                onClick={this.props.cancel}
+                tabIndex={-1}
+              >
+                Cancel
+              </button>
+              <button
+                type="button"
+                className="btn btn-danger"
+                onClick={this.props.delete}
+                tabIndex={-1}
+              >
+                Delete
+              </button>
             </div>
           </div>
-        </form>
-      </li>
+        </div>
+      </HotKeys>
     );
   }
 }

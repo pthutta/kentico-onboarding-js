@@ -11,11 +11,17 @@ module.exports = merge(common, {
   mode: 'development',
   plugins: [
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.API_URL': JSON.stringify('https://peterh-todoapp.azurewebsites.net/api')
+    }),
   ],
   devServer: {
     contentBase: path.resolve(__dirname, 'build'),
     port: 3000,
     open: true,
-    hot: true
-  }
+    hot: true,
+    proxy: {
+      '*': 'http://[::1]:58227/api'
+    }
+  },
 });
