@@ -4,12 +4,64 @@ html {
   min-height: 100%;
 }
 
+.page {
+  min-height: 95vh !important;
+}
+
+.list-item {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  max-height: 34px;
+}
+
+.aligner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 79vh;
+}
+
+.aligned-item {
+  flex: 1;
+}
+
+.aligned-item--top {
+  align-self: flex-start;
+}
+
+.error-message {
+  flex: 1;
+  min-width: 80%;
+  max-height: 50px;
+}
+
+.item-error {
+  flex: 1;
+  max-width: 70%;
+}
+
+.is-syncing {
+  color: lightgrey;
+  font-weight: bold;
+}
 
 body {
   /* Margin bottom by footer height */
   margin-bottom: 60px !important;
 }
 
+div[tabindex="-1"]:focus {
+  outline: 0;
+}
+
+div[tabindex="-1"] > div:focus {
+  outline: 0;
+  font-weight: bolder;
+  font-size: larger;
+}
 
 .footer {
   position: absolute;
@@ -25,10 +77,44 @@ body {
   justify-content: center;
 }
 
+div[class~="has-success"]:not(:focus-within) input {
+  border-color: inherit;
+}
+
+div[class~="has-error"]:not(:focus-within) input {
+  border-color: inherit;
+}
+
+.inline div[tabindex="-1"] {
+  display: inline-block;
+  flex: 1;
+}
+
+.flexbox {
+  display: flex;
+  align-items: center;
+}
+
+.flexbox .stretch {
+  flex: 1;
+}
+
+.flexbox .normal {
+  flex: 0 0 auto;
+}
+
+.flexbox div input {
+  width: 100% !important;
+}
+
+.flexbox div button {
+  white-space: nowrap !important;
+}
 
 .container .text-muted {
   display: flex;
   margin: 20px 0;
+  justify-content: center;
   width: auto;
   padding: 0 15px;
 }
